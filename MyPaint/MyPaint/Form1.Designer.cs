@@ -31,7 +31,11 @@
             this.Canvas = new System.Windows.Forms.Panel();
             this.btnLine = new System.Windows.Forms.Button();
             this.pnlButtons = new System.Windows.Forms.Panel();
+            this.btnEllipse = new System.Windows.Forms.Button();
+            this.btnRectangle = new System.Windows.Forms.Button();
             this.pnlCommon = new System.Windows.Forms.Panel();
+            this.btnSquare = new System.Windows.Forms.Button();
+            this.btnCircle = new System.Windows.Forms.Button();
             this.pnlButtons.SuspendLayout();
             this.pnlCommon.SuspendLayout();
             this.SuspendLayout();
@@ -51,7 +55,7 @@
             // 
             // btnLine
             // 
-            this.btnLine.Location = new System.Drawing.Point(0, 21);
+            this.btnLine.Location = new System.Drawing.Point(0, 12);
             this.btnLine.Name = "btnLine";
             this.btnLine.Size = new System.Drawing.Size(101, 60);
             this.btnLine.TabIndex = 0;
@@ -62,12 +66,36 @@
             // pnlButtons
             // 
             this.pnlButtons.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnlButtons.Controls.Add(this.btnCircle);
+            this.pnlButtons.Controls.Add(this.btnSquare);
+            this.pnlButtons.Controls.Add(this.btnEllipse);
+            this.pnlButtons.Controls.Add(this.btnRectangle);
             this.pnlButtons.Controls.Add(this.btnLine);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlButtons.Location = new System.Drawing.Point(0, 0);
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.Size = new System.Drawing.Size(101, 853);
             this.pnlButtons.TabIndex = 0;
+            // 
+            // btnEllipse
+            // 
+            this.btnEllipse.Location = new System.Drawing.Point(0, 144);
+            this.btnEllipse.Name = "btnEllipse";
+            this.btnEllipse.Size = new System.Drawing.Size(101, 60);
+            this.btnEllipse.TabIndex = 2;
+            this.btnEllipse.Text = "Ellipse";
+            this.btnEllipse.UseVisualStyleBackColor = true;
+            this.btnEllipse.Click += new System.EventHandler(this.btnEllipse_Click);
+            // 
+            // btnRectangle
+            // 
+            this.btnRectangle.Location = new System.Drawing.Point(0, 78);
+            this.btnRectangle.Name = "btnRectangle";
+            this.btnRectangle.Size = new System.Drawing.Size(101, 60);
+            this.btnRectangle.TabIndex = 1;
+            this.btnRectangle.Text = "Rectangle";
+            this.btnRectangle.UseVisualStyleBackColor = true;
+            this.btnRectangle.Click += new System.EventHandler(this.btnRectangle_Click);
             // 
             // pnlCommon
             // 
@@ -78,6 +106,26 @@
             this.pnlCommon.Name = "pnlCommon";
             this.pnlCommon.Size = new System.Drawing.Size(982, 853);
             this.pnlCommon.TabIndex = 0;
+            // 
+            // btnSquare
+            // 
+            this.btnSquare.Location = new System.Drawing.Point(0, 210);
+            this.btnSquare.Name = "btnSquare";
+            this.btnSquare.Size = new System.Drawing.Size(101, 60);
+            this.btnSquare.TabIndex = 3;
+            this.btnSquare.Text = "Square";
+            this.btnSquare.UseVisualStyleBackColor = true;
+            this.btnSquare.Click += new System.EventHandler(this.btnSquare_Click);
+            // 
+            // btnCircle
+            // 
+            this.btnCircle.Location = new System.Drawing.Point(0, 276);
+            this.btnCircle.Name = "btnCircle";
+            this.btnCircle.Size = new System.Drawing.Size(101, 60);
+            this.btnCircle.TabIndex = 4;
+            this.btnCircle.Text = "Circle";
+            this.btnCircle.UseVisualStyleBackColor = true;
+            this.btnCircle.Click += new System.EventHandler(this.btnCircle_Click);
             // 
             // MainForm
             // 
@@ -99,6 +147,10 @@
         private System.Windows.Forms.Button btnLine;
         private System.Windows.Forms.Panel pnlButtons;
         private System.Windows.Forms.Panel pnlCommon;
+        private System.Windows.Forms.Button btnRectangle;
+        private System.Windows.Forms.Button btnEllipse;
+        private System.Windows.Forms.Button btnSquare;
+        private System.Windows.Forms.Button btnCircle;
     }
 }
 
