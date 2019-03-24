@@ -12,7 +12,7 @@ namespace MyPaint
 {
     public partial class MainForm : Form
     {
-        public Pen myPen = new Pen(Color.Aqua);
+        public Pen myPen = new Pen(Color.Aqua, 4);
         public Graphics g = null;
         public bool clickLine = false, clickRectangle = false, clickEllipse = false, clickSquare = false, clickCircle = false;
         public Point pos1, pos2;
@@ -55,7 +55,7 @@ namespace MyPaint
 
         private void Canvas_Paint(object sender, PaintEventArgs e)
         {
-            myPen.Width = 4;
+ //           myPen.Width = 4;
             g = Canvas.CreateGraphics();
             if (clickLine)
             {
@@ -104,6 +104,17 @@ namespace MyPaint
             g.Dispose();
             GC.Collect();
             GC.WaitForPendingFinalizers();
+        }
+
+        private void btnChangePenColor_Click(object sender, EventArgs e)
+        {
+            colorDialog.ShowDialog();
+            myPen.Color = colorDialog.Color;
+        }
+
+        private void tBarWidth_Scroll(object sender, EventArgs e)
+        {
+            myPen.Width = tBarWidth.Value;
         }
 
         private void btnCircle_Click(object sender, EventArgs e)
