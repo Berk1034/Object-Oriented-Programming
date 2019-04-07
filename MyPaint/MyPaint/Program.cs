@@ -6,10 +6,10 @@ using System.Windows.Forms;
 
 namespace MyPaint
 {
-//    abstract class OOP(polymorphizm) interface
-//Нет множественного наследования
-//Таблица виртуальных методов, override
-//Вместо virtual -> abstract
+    //abstract class OOP(polymorphizm) interface
+    //No multiple inheritanceNo multiple inheritance
+    //Virtual method table, override
+    //Instead of virtual -> abstract
     static class Program
     {
         /// <summary>
