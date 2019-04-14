@@ -4,21 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace MyPaint
 {
     class Triangle : Shape
     {
-        public Point pos3;
-        public Triangle (Pen pn, Point position1, Point position2) : base(pn, position1, position2)
+        private Color clr;
+        private int pWidth;
+        public Triangle(Color clr, int pWidth)
         {
-            pos3 = new Point(pos1.X, pos2.Y);
+            this.clr = clr;
+            this.pWidth = pWidth;
         }
-        public override void Draw(Graphics g)
+        public override Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second)
         {
-//            pos3 = new Point(pos1.X, pos2.Y);
-            PointF[] points = { pos1, pos2, pos3 };
-            g.DrawPolygon(pen, points);
+            Pen pen = new Pen(clr);
+            pen.Width = pWidth;
+            Point[] point = { new Point(first.X, first.Y), new Point(second.X, second.Y), new Point(first.X, second.Y) };
+            Graphics graph = Graphics.FromImage(bmp);
+            graph.DrawPolygon(pen, point);
+            graph.Save();
+            return bmp;
+        }
+        public override void DrawE(int x, int y, int h, int w, Point first, Point second, PaintEventArgs e)
+        {
+            Pen pen = new Pen(clr);
+            pen.Width = pWidth;
+            PointF[] point = { new PointF(first.X, first.Y), new PointF(second.X, second.Y), new PointF(first.X, second.Y) };
+            e.Graphics.DrawPolygon(pen, point);
         }
     }
 }

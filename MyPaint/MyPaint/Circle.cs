@@ -4,22 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace MyPaint
 {
     class Circle : Shape
     {
-//        public Pen pen;
-//        public Point pos1, pos2;
-        public int radius;
-        public Circle(Pen pn, Point position1, Point position2) : base(pn, position1, position2)
+        private Color clr;
+        private int pWidth;
+        public Circle(Color clr, int pWidth)
         {
-            radius = Math.Abs(pos1.X - pos2.X);
+            this.clr = clr;
+            this.pWidth = pWidth;
         }
-        public override void Draw(Graphics g)
+        public override Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second)
         {
-//            radius = Math.Abs(pos1.X - pos2.X);
-            g.DrawEllipse(pen, Math.Min(pos1.X, pos2.X), Math.Min(pos1.Y, pos2.Y), radius, radius);
+            Graphics graph = Graphics.FromImage(bmp);
+            graph.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            Pen pen = new Pen(clr);
+            pen.Width = pWidth;
+            System.Drawing.Rectangle rect = new System.Drawing.Rectangle(x, y, w, w);
+            graph.DrawEllipse(pen, rect);
+            graph.Save();
+            return bmp;
+        }
+        public override void DrawE(int x, int y, int h, int w, Point first, Point second, PaintEventArgs e)
+        {
+            Pen pen = new Pen(clr);
+            pen.Width = pWidth;
+            System.Drawing.Rectangle rect = new System.Drawing.Rectangle(x, y, w, w);
+            e.Graphics.DrawEllipse(pen, rect);
         }
     }
 }

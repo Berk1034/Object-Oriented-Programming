@@ -4,23 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace MyPaint
 {
     class Square : Shape
     {
-//        public Pen pen;
-//        public Point pos1, pos2;
-        public int weight;
-        public Square(Pen pn, Point position1, Point position2) : base(pn, position1, position2)
+        private Color clr;
+        private int pWidth;
+        public Square(Color clr, int pWidth)
         {
-            weight = Math.Abs(pos1.X - pos2.X);
+            this.clr = clr;
+            this.pWidth = pWidth;
         }
-        public override void Draw(Graphics g)
+        public override Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second)
         {
-//            base.Draw(g);
-            //            weight = Math.Abs(pos1.X - pos2.X);
-            g.DrawRectangle(pen, Math.Min(pos1.X, pos2.X), Math.Min(pos1.Y, pos2.Y), weight, weight);
+            Graphics graph = Graphics.FromImage(bmp);
+            Pen pen = new Pen(clr);
+            pen.Width = pWidth;
+            graph.DrawRectangle(pen, x, y, h, h);
+            graph.Save();
+            return bmp;
+        }
+        public override void DrawE(int x, int y, int h, int w, Point first, Point second, PaintEventArgs e)
+        {
+            Pen pen = new Pen(clr);
+            pen.Width = pWidth;
+            System.Drawing.Rectangle rect = new System.Drawing.Rectangle(x, y, h, h);
+            e.Graphics.DrawRectangle(pen, rect);
         }
     }
 }

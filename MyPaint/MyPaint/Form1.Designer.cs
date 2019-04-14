@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Canvas = new System.Windows.Forms.Panel();
+            this.pnlCanvas = new System.Windows.Forms.Panel();
+            this.ShapePictureBox = new System.Windows.Forms.PictureBox();
             this.btnLine = new System.Windows.Forms.Button();
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.btnClear = new System.Windows.Forms.Button();
@@ -41,24 +42,37 @@
             this.btnRectangle = new System.Windows.Forms.Button();
             this.pnlCommon = new System.Windows.Forms.Panel();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.btnTriangle = new System.Windows.Forms.Button();
+            this.pnlCanvas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ShapePictureBox)).BeginInit();
             this.pnlButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tBarWidth)).BeginInit();
             this.pnlCommon.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Canvas
+            // pnlCanvas
             // 
-            this.Canvas.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.Canvas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Canvas.Location = new System.Drawing.Point(101, 0);
-            this.Canvas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Canvas.Name = "Canvas";
-            this.Canvas.Size = new System.Drawing.Size(1142, 866);
-            this.Canvas.TabIndex = 1;
-            this.Canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);
-            this.Canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseDown);
-            this.Canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseMove);
-            this.Canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseUp);
+            this.pnlCanvas.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnlCanvas.Controls.Add(this.ShapePictureBox);
+            this.pnlCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlCanvas.Location = new System.Drawing.Point(101, 0);
+            this.pnlCanvas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pnlCanvas.Name = "pnlCanvas";
+            this.pnlCanvas.Size = new System.Drawing.Size(1142, 866);
+            this.pnlCanvas.TabIndex = 1;
+            // 
+            // ShapePictureBox
+            // 
+            this.ShapePictureBox.BackColor = System.Drawing.SystemColors.Window;
+            this.ShapePictureBox.Location = new System.Drawing.Point(0, 0);
+            this.ShapePictureBox.Name = "ShapePictureBox";
+            this.ShapePictureBox.Size = new System.Drawing.Size(1142, 866);
+            this.ShapePictureBox.TabIndex = 0;
+            this.ShapePictureBox.TabStop = false;
+            this.ShapePictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.ShapePictureBox_Paint);
+            this.ShapePictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShapePictureBox_MouseDown);
+            this.ShapePictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ShapePictureBox_MouseMove);
+            this.ShapePictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShapePictureBox_MouseUp);
             // 
             // btnLine
             // 
@@ -74,6 +88,7 @@
             // pnlButtons
             // 
             this.pnlButtons.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnlButtons.Controls.Add(this.btnTriangle);
             this.pnlButtons.Controls.Add(this.btnClear);
             this.pnlButtons.Controls.Add(this.lblPenWidth);
             this.pnlButtons.Controls.Add(this.tBarWidth);
@@ -92,7 +107,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(0, 342);
+            this.btnClear.Location = new System.Drawing.Point(0, 412);
             this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(101, 60);
@@ -177,7 +192,7 @@
             // 
             // pnlCommon
             // 
-            this.pnlCommon.Controls.Add(this.Canvas);
+            this.pnlCommon.Controls.Add(this.pnlCanvas);
             this.pnlCommon.Controls.Add(this.pnlButtons);
             this.pnlCommon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCommon.Location = new System.Drawing.Point(0, 0);
@@ -186,19 +201,32 @@
             this.pnlCommon.Size = new System.Drawing.Size(1243, 866);
             this.pnlCommon.TabIndex = 0;
             // 
+            // btnTriangle
+            // 
+            this.btnTriangle.Location = new System.Drawing.Point(0, 344);
+            this.btnTriangle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTriangle.Name = "btnTriangle";
+            this.btnTriangle.Size = new System.Drawing.Size(101, 60);
+            this.btnTriangle.TabIndex = 10;
+            this.btnTriangle.Text = "Triangle";
+            this.btnTriangle.UseVisualStyleBackColor = true;
+            this.btnTriangle.Click += new System.EventHandler(this.btnTriangle_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1243, 866);
             this.Controls.Add(this.pnlCommon);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(761, 405);
             this.Name = "MainForm";
             this.Text = "TheBestPaintEver";
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.pnlCanvas.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ShapePictureBox)).EndInit();
             this.pnlButtons.ResumeLayout(false);
             this.pnlButtons.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tBarWidth)).EndInit();
@@ -208,7 +236,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel Canvas;
+        private System.Windows.Forms.Panel pnlCanvas;
         private System.Windows.Forms.Button btnLine;
         private System.Windows.Forms.Panel pnlButtons;
         private System.Windows.Forms.Panel pnlCommon;
@@ -221,6 +249,8 @@
         private System.Windows.Forms.Label lblPenWidth;
         private System.Windows.Forms.TrackBar tBarWidth;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.PictureBox ShapePictureBox;
+        private System.Windows.Forms.Button btnTriangle;
     }
 }
 

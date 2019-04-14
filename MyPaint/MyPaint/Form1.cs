@@ -20,216 +20,147 @@ namespace MyPaint
             Square,
             Circle
         }
-        List<Shape> ListOfShapes;
-        public Bitmap Bmp;
-        public Pen myPen = new Pen(Color.Aqua, 4);
-        public Graphics g = null;
-        public bool endofdrawing = false;
-        public bool clickLine = false, clickRectangle = false, clickEllipse = false, clickSquare = false, clickCircle = false;
-        public Point pos1, pos2;
-        private void Canvas_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left && (clickLine || clickRectangle || clickEllipse || clickSquare || clickCircle))
-            {
-                pos2.X = e.X;
-                pos2.Y = e.Y;
-                Canvas.Refresh();
-            }
-        }
 
-        private void Canvas_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left && (clickLine || clickRectangle || clickEllipse || clickSquare || clickCircle))
-            {
-                pos2.X = e.X;
-                pos2.Y = e.Y;
-                Canvas.Refresh();
-/*
-                clickLine = false;
-                clickRectangle = false;
-                clickEllipse = false;
-                clickSquare = false;
-                clickCircle = false;
-*/
-                Canvas.Cursor = Cursors.Default;
-                endofdrawing = true;
-            }
-        }
-
-        private void Canvas_MouseDown(object sender, MouseEventArgs e)
-        {
-            if(e.Button == MouseButtons.Left && (clickLine || clickRectangle || clickEllipse || clickSquare || clickCircle))
-            {
-                Canvas.Cursor = Cursors.Hand;
-                pos1.X = e.X;
-                pos1.Y = e.Y;
-            }
-        }
+        private Bitmap Bmp;
+        private bool press = false;
+        private Point one, two;
+        private Color Current = Color.Black;
+        private int penWidth = 1;
+        private Shape figure;
+        private int x, y, w, h;
+        public List<Shape> ListOfShapes = new List<Shape>();
 
         public MainForm()
         {
             InitializeComponent();
-            ListOfShapes = new List<Shape>(6);
-            ListOfShapes.Add(new Shape(myPen, new Point(0, 0), new Point(700, 100)));
-            ListOfShapes.Add(new Line(myPen, new Point(0, 0), new Point(700, 100)));
-            ListOfShapes.Add(new Rectangle(myPen, new Point(10, 200), new Point(500, 100)));
+//            one = new Point(0, 0);
+//            two = new Point(700, 100);
+            ListOfShapes.Add(new Line(Current, penWidth));
+            one = new Point(10, 200);
+            two = new Point(500, 100);
+            ListOfShapes.Add(new Rectangle(Current, penWidth));
+            /*
             ListOfShapes.Add(new Ellipse(myPen, new Point(30, 250), new Point(600, 200)));
             ListOfShapes.Add(new Square(myPen, new Point(40, 300), new Point(400, 300)));
             ListOfShapes.Add(new Circle(myPen, new Point(400, 500), new Point(200, 600)));
             ListOfShapes.Add(new Triangle(myPen, new Point(600, 250), new Point(500, 650)));
-            //            g = Canvas.CreateGraphics();
-            Bitmap bmp = new Bitmap(Canvas.Width, Canvas.Height);
+            */
+            Bitmap bmp = new Bitmap(ShapePictureBox.Width, ShapePictureBox.Height);
             Bmp = bmp;
-            g = Graphics.FromImage(bmp);
-            //            g = Canvas.CreateGraphics();
-            //            g = Canvas.CreateGraphics();
+
             foreach (Shape Shp in ListOfShapes)
             {
-                Shp.Draw(g);
+                CountCanvasPoints();
+                Bmp = Shp.Draw(Bmp, x, y, h, w, one, two);
+                ShapePictureBox.Image = Bmp;
             }
+
         }
 
-        private void Canvas_Paint(object sender, PaintEventArgs e)
+        private void ShapePictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-//            foreach(Shape Shp in ListOfShapes)
-//            {
-//                Shp.Draw(g);
-//            }
-            Canvas.BackgroundImage = Bmp;
-            //            g = Graphics.FromHwnd(Canvas.Handle);
-            //            g = Graphics.FromImage(e.Graphics);
-            //            g = e.Graphics;
-            //            g = Canvas.CreateGraphics();
-            //            g = Graphics.FromImage(Bmp);
-            if (clickLine)
+            if (figure != null)
             {
-                Line Line1 = new Line(myPen, pos1, pos2);
-                /*
-                Line Line1 = new Line();
-                Line1.pen = myPen;
-                Line1.pos1 = pos1;
-                Line1.pos2 = pos2;
-                */
-                Line1.Draw(g);
-                Line1 = null;
+                Cursor.Current = Cursors.Cross;
+                press = true;
+                one = e.Location;
             }
-            else if (clickRectangle)
+        }
+
+        private void ShapePictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (figure != null && press)
             {
-                Rectangle Rect1 = new Rectangle(myPen, pos1, pos2);
-                /*
-                Rect1.pen = myPen;
-                Rect1.pos1 = pos1;
-                Rect1.pos2 = pos2;
-                */
-                Rect1.Draw(g);
-                Rect1 = null;
+                two = e.Location;
+                ShapePictureBox.Refresh();
             }
-            else if (clickEllipse)
+        }
+
+        private void ShapePictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (figure != null)
             {
-                Ellipse Ellip1 = new Ellipse(myPen, pos1, pos2);
-                /*
-                Ellip1.pen = myPen;
-                Ellip1.pos1 = pos1;
-                Ellip1.pos2 = pos2;
-                */
-                Ellip1.Draw(g);
-                Ellip1 = null;
+                Cursor.Current = Cursors.Default;
+                press = false;
+                two = e.Location;
+                Bmp = figure.Draw(Bmp, x, y, h, w, one, two);
+                ShapePictureBox.Image = Bmp;
             }
-            else if (clickSquare)
+        }
+
+        private void ShapePictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            if (figure != null && press)
             {
-                Square Sq1 = new Square(myPen, pos1, pos2);
-                /*
-                Sq1.pen = myPen;
-                Sq1.pos1 = pos1;
-                Sq1.pos2 = pos2;
-                */
-                Sq1.Draw(g);
-                Sq1 = null;
+                CountCanvasPoints();
+                figure.DrawE(x, y, h, w, one, two, e);
             }
-            else if (clickCircle)
-            {
-                Circle Circ1 = new Circle(myPen, pos1, pos2);
-                /*
-                Circ1.pen = myPen;
-                Circ1.pos1 = pos1;
-                Circ1.pos2 = pos2;
-                */
-                Circ1.Draw(g);
-                Circ1 = null;
-            }
-            //            e.Graphics.Save();
-            //           if(endofdrawing)
-            if (endofdrawing)
-                Canvas.BackgroundImage = Bmp;
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-        }
-
-        private void btnChangePenColor_Click(object sender, EventArgs e)
-        {
-            colorDialog.ShowDialog();
-            myPen.Color = colorDialog.Color;
-        }
-
-        private void tBarWidth_Scroll(object sender, EventArgs e)
-        {
-            myPen.Width = tBarWidth.Value;
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            g.Clear(Color.White);
-            Canvas.Refresh();
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            DoubleBuffered = true;
-        }
-
-        private void btnCircle_Click(object sender, EventArgs e)
-        {
-            clickCircle = true;
-            clickSquare = false;
-            clickEllipse = false;
-            clickLine = false;
-            clickRectangle = false;
-        }
-
-        private void btnSquare_Click(object sender, EventArgs e)
-        {
-            clickSquare = true;
-            clickEllipse = false;
-            clickLine = false;
-            clickRectangle = false;
-            clickCircle = false;
-        }
-
-        private void btnEllipse_Click(object sender, EventArgs e)
-        {
-            clickEllipse = true;
-            clickLine = false;
-            clickRectangle = false;
-            clickSquare = false;
-            clickCircle = false;
-        }
-
-        private void btnRectangle_Click(object sender, EventArgs e)
-        {
-            clickRectangle = true;
-            clickLine = false;
-            clickEllipse = false;
-            clickSquare = false;
-            clickCircle = false;
         }
 
         private void btnLine_Click(object sender, EventArgs e)
         {
-            clickLine = true;
-            clickRectangle = false;
-            clickEllipse = false;
-            clickSquare = false;
-            clickCircle = false;
+            Line temp = new Line(Current, penWidth);
+            this.figure = temp;
+        }
+
+        private void btnRectangle_Click(object sender, EventArgs e)
+        {
+            Rectangle temp = new Rectangle(Current, penWidth);
+            this.figure = temp;
+        }
+
+        private void btnEllipse_Click(object sender, EventArgs e)
+        {
+            Ellipse temp = new Ellipse(Current, penWidth);
+            this.figure = temp;
+        }
+
+        private void btnSquare_Click(object sender, EventArgs e)
+        {
+            Square temp = new Square(Current, penWidth);
+            this.figure = temp;
+        }
+
+        private void btnCircle_Click(object sender, EventArgs e)
+        {
+            Circle temp = new Circle(Current, penWidth);
+            this.figure = temp;
+        }
+                          
+        private void btnTriangle_Click(object sender, EventArgs e)
+        {
+            Triangle temp = new Triangle(Current, penWidth);
+            this.figure = temp;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ShapePictureBox.Image = null;
+            Bmp.Dispose();
+            ListOfShapes.Clear();
+            Bitmap bmp = new Bitmap(ShapePictureBox.Width, ShapePictureBox.Height);
+            Bmp = bmp;
+        }
+
+        private void tBarWidth_Scroll(object sender, EventArgs e)
+        {
+            this.figure = null;
+            penWidth = tBarWidth.Value;
+        }
+
+        private void btnChangePenColor_Click(object sender, EventArgs e)
+        {
+            this.figure = null;
+            colorDialog.ShowDialog();
+            Current = colorDialog.Color;
+        }
+
+        public void CountCanvasPoints()
+        {
+            x = Math.Min(one.X, two.X);
+            y = Math.Min(one.Y, two.Y);
+            h = Math.Abs(one.X - two.X);
+            w = Math.Abs(one.Y - two.Y);
         }
     }
 }

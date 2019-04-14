@@ -4,20 +4,33 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MyPaint
 {
     class Line : Shape
     {
-//        public Pen pen;
-//        public Point pos1, pos2;
-        public Line(Pen pn, Point position1, Point position2) : base(pn, position1, position2)
+        private Color clr;
+        private int pWidth;
+        public Line(Color clr, int pWidth)
         {
-
+            this.clr = clr;
+            this.pWidth = pWidth;
         }
-        public override void Draw(Graphics g)
+        public override Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second)
         {
-            g.DrawLine(pen, pos1.X, pos1.Y, pos2.X, pos2.Y);
+            Graphics graph = Graphics.FromImage(bmp);
+            graph.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            Pen pen = new Pen(clr);
+            pen.Width = pWidth;
+            graph.DrawLine(pen, first.X, first.Y, second.X, second.Y);
+            return bmp;
+        }
+        public override void DrawE(int x, int y, int h, int w, Point first, Point second, PaintEventArgs e)
+        {
+            Pen pen = new Pen(clr);
+            pen.Width = pWidth;
+            e.Graphics.DrawLine(pen, first.X, first.Y, second.X, second.Y);
         }
     }
 }

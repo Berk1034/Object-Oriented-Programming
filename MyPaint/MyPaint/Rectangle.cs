@@ -4,25 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace MyPaint
 {
     class Rectangle : Shape
     {
-        //        public Pen pen;
-        //        public Point pos1, pos2;
-        public int height;
-        public int weight;
-        public Rectangle(Pen pen, Point position1, Point position2) : base(pen, position1, position2)
+        private Color clr;
+        private int pWidth;
+        public Rectangle(Color clr, int pWidth)
         {
-            height = Math.Abs(pos1.Y - pos2.Y);
-            weight = Math.Abs(pos1.X - pos2.X);
+            this.clr = clr;
+            this.pWidth = pWidth;
         }
-        public override void Draw(Graphics g)
+        public override Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second)
         {
-//            height = Math.Abs(pos1.Y - pos2.Y);
-//            weight = Math.Abs(pos1.X - pos2.X);
-            g.DrawRectangle(pen, Math.Min(pos1.X, pos2.X), Math.Min(pos1.Y, pos2.Y), weight, height);
+            Graphics graph = Graphics.FromImage(bmp);
+            Pen pen = new Pen(clr);
+            pen.Width = pWidth;
+            graph.DrawRectangle(pen, x, y, h, w);
+            graph.Save();
+            return bmp;
+        }
+        public override void DrawE(int x, int y, int h, int w, Point first, Point second, PaintEventArgs e)
+        {
+            Pen pen = new Pen(clr);
+            pen.Width = pWidth;
+            System.Drawing.Rectangle rect = new System.Drawing.Rectangle(x, y, h, w);
+            e.Graphics.DrawRectangle(pen, rect);
         }
     }
 }
