@@ -69,10 +69,6 @@ namespace MyPaint
         public MainForm()
         {
             InitializeComponent();
-//            pos1.X = 100;
-//            pos1.Y = 200;
-//            pos2.X = 200;
-//            pos2.Y = 300;
             ListOfShapes = new List<Shape>(6);
             ListOfShapes.Add(new Shape(myPen, new Point(0, 0), new Point(700, 100)));
             ListOfShapes.Add(new Line(myPen, new Point(0, 0), new Point(700, 100)));
@@ -183,6 +179,7 @@ namespace MyPaint
         private void btnClear_Click(object sender, EventArgs e)
         {
             g.Clear(Color.White);
+            Canvas.Refresh();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
