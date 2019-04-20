@@ -17,7 +17,7 @@ Unique Paint
 *Select a subject area and build a class hierarchy. The hierarchy must include at least 6 classes.
 To implement serialization / deserialization of objects from the resulting class hierarchy to / from a file, the serialization format is determined by the individual variant.
 In the user interface, you must implement the following functions:*
-* *Serialization / deserialization of the list of objects.* *
+>*Serialization / deserialization of the list of objects.*
 *Data Structure according to the variant: JSON.
 Adding new classes to the hierarchy should not lead to the need to rewrite existing code, and not to use if-else / switch-case, reflection.
 Optional: implementation graphical interface.*
