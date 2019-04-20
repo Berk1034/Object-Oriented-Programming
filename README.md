@@ -20,6 +20,5 @@ In the user interface, you must implement the following functions:*
 * *Serialization / deserialization of the list of objects.*
 
 *Data Structure according to the variant: JSON.*  
-
 *Adding new classes to the hierarchy should not lead to the need to rewrite existing code, and not to use if-else / switch-case, reflection.
 Optional: implementation graphical interface.*
