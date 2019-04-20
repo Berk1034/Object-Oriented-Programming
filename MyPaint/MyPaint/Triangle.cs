@@ -10,6 +10,8 @@ namespace MyPaint
 {
     class Triangle : Shape
     {
+//        public Point pos1, pos2;
+//        public int x, y, h, w;
         private Color clr;
         private int pWidth;
         public Triangle(Color clr, int pWidth)

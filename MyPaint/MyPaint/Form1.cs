@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace MyPaint
 {
@@ -35,10 +37,12 @@ namespace MyPaint
             InitializeComponent();
 //            one = new Point(0, 0);
 //            two = new Point(700, 100);
+/*
             ListOfShapes.Add(new Line(Current, penWidth));
             one = new Point(10, 200);
             two = new Point(500, 100);
             ListOfShapes.Add(new Rectangle(Current, penWidth));
+            */
             /*
             ListOfShapes.Add(new Ellipse(myPen, new Point(30, 250), new Point(600, 200)));
             ListOfShapes.Add(new Square(myPen, new Point(40, 300), new Point(400, 300)));
@@ -85,7 +89,15 @@ namespace MyPaint
                 two = e.Location;
                 Bmp = figure.Draw(Bmp, x, y, h, w, one, two);
                 ShapePictureBox.Image = Bmp;
+                figure.pos1 = one;
+                figure.pos2 = two;
+                figure.x = x;
+                figure.y = y;
+                figure.h = h;
+                figure.w = w;
+                ListOfShapes.Add(this.figure);
             }
+            figure = null;
         }
 
         private void ShapePictureBox_Paint(object sender, PaintEventArgs e)
@@ -131,6 +143,27 @@ namespace MyPaint
         {
             Triangle temp = new Triangle(Current, penWidth);
             this.figure = temp;
+        }
+
+        private void btn_Serialize_Click(object sender, EventArgs e)
+        {
+            JsonSerializer jsonSerializer = new JsonSerializer();
+            jsonSerializer.TypeNameHandling = TypeNameHandling.Objects;
+
+            using(StreamWriter writer = new StreamWriter("figures.json"))
+            {
+                using(JsonWriter jsonWriter = new JsonTextWriter(writer))
+                {
+                    try
+                    {
+                        jsonSerializer.Serialize(jsonWriter, ListOfShapes);
+                    }
+                    catch(Exception exception)
+                    {
+                        MessageBox.Show("Serialization error with message = ", exception.Message);
+                    }
+                }
+            }
         }
 
         private void btnClear_Click(object sender, EventArgs e)

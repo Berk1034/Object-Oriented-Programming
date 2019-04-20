@@ -10,6 +10,8 @@ namespace MyPaint
 {
     class Rectangle : Shape
     {
+//        public Point pos1, pos2;
+//        public int x, y, h, w;
         private Color clr;
         private int pWidth;
         public Rectangle(Color clr, int pWidth)
