@@ -8,19 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using Newtonsoft.Json;
+using Newtonsoft.Json; 
 
 namespace MyPaint
 {
     public partial class MainForm : Form
     {
+        const String SerializationFile = "figures.json";
+
         public enum Shapes
         {
             Line,
             Rectangle,
             Ellipse,
             Square,
-            Circle
+            Circle,
+            Triangle
         }
 
         private Bitmap Bmp;
@@ -51,14 +54,14 @@ namespace MyPaint
             */
             Bitmap bmp = new Bitmap(ShapePictureBox.Width, ShapePictureBox.Height);
             Bmp = bmp;
-
+/*
             foreach (Shape Shp in ListOfShapes)
             {
                 CountCanvasPoints();
                 Bmp = Shp.Draw(Bmp, x, y, h, w, one, two);
                 ShapePictureBox.Image = Bmp;
             }
-
+*/
         }
 
         private void ShapePictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -95,6 +98,8 @@ namespace MyPaint
                 figure.y = y;
                 figure.h = h;
                 figure.w = w;
+                figure.pWidth = penWidth;
+                figure.clr = Current;
                 ListOfShapes.Add(this.figure);
             }
             figure = null;
@@ -150,7 +155,7 @@ namespace MyPaint
             JsonSerializer jsonSerializer = new JsonSerializer();
             jsonSerializer.TypeNameHandling = TypeNameHandling.Objects;
 
-            using(StreamWriter writer = new StreamWriter("figures.json"))
+            using(StreamWriter writer = new StreamWriter(SerializationFile))
             {
                 using(JsonWriter jsonWriter = new JsonTextWriter(writer))
                 {
@@ -164,6 +169,38 @@ namespace MyPaint
                     }
                 }
             }
+        }
+
+        private void btnDeserialize_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(SerializationFile))
+            {
+                JsonSerializer jsonDeserializer = new JsonSerializer();
+                jsonDeserializer.TypeNameHandling = TypeNameHandling.Objects;
+
+                using (StreamReader reader = new StreamReader(SerializationFile))
+                {
+                    using (JsonReader jsonReader = new JsonTextReader(reader))
+                    {
+                        try
+                        {
+                            var DeserializedShapes = jsonDeserializer.Deserialize<List<Shape>>(jsonReader);
+                            ListOfShapes.AddRange(DeserializedShapes);
+                            foreach (Shape Shp in ListOfShapes)
+                            {
+                                Bmp = Shp.Draw(Bmp, Shp.x, Shp.y, Shp.h, Shp.w, Shp.pos1, Shp.pos2);
+                                ShapePictureBox.Image = Bmp;
+                                //ShapePictureBox.Refresh();
+                            }
+                        }
+                        catch (Exception exception)
+                        {
+                            MessageBox.Show("Deserialization error with message = ", exception.Message);
+                        }
+                    }
+                }
+            }
+            
         }
 
         private void btnClear_Click(object sender, EventArgs e)

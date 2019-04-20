@@ -60,7 +60,7 @@
             this.pnlCanvas.Location = new System.Drawing.Point(76, 0);
             this.pnlCanvas.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pnlCanvas.Name = "pnlCanvas";
-            this.pnlCanvas.Size = new System.Drawing.Size(785, 704);
+            this.pnlCanvas.Size = new System.Drawing.Size(855, 699);
             this.pnlCanvas.TabIndex = 1;
             // 
             // ShapePictureBox
@@ -107,7 +107,7 @@
             this.pnlButtons.Location = new System.Drawing.Point(0, 0);
             this.pnlButtons.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(76, 704);
+            this.pnlButtons.Size = new System.Drawing.Size(76, 699);
             this.pnlButtons.TabIndex = 0;
             // 
             // btnDeserialize
@@ -119,6 +119,7 @@
             this.btnDeserialize.TabIndex = 12;
             this.btnDeserialize.Text = "Deserialize";
             this.btnDeserialize.UseVisualStyleBackColor = true;
+            this.btnDeserialize.Click += new System.EventHandler(this.btnDeserialize_Click);
             // 
             // btnSerialize
             // 
@@ -236,20 +237,20 @@
             this.pnlCommon.Location = new System.Drawing.Point(0, 0);
             this.pnlCommon.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pnlCommon.Name = "pnlCommon";
-            this.pnlCommon.Size = new System.Drawing.Size(861, 704);
+            this.pnlCommon.Size = new System.Drawing.Size(931, 699);
             this.pnlCommon.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(861, 704);
+            this.ClientSize = new System.Drawing.Size(931, 699);
             this.Controls.Add(this.pnlCommon);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(569, 317);
+            this.MinimumSize = new System.Drawing.Size(559, 289);
             this.Name = "MainForm";
             this.Text = "TheBestPaintEver";
             this.pnlCanvas.ResumeLayout(false);

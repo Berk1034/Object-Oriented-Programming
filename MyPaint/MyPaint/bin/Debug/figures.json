@@ -1,1 +1,1 @@
-[{"$type":"MyPaint.Line, MyPaint","pos1":"102, 104","pos2":"376, 324","x":102,"y":104,"h":274,"w":220},{"$type":"MyPaint.Rectangle, MyPaint","pos1":"222, 101","pos2":"586, 172","x":222,"y":101,"h":364,"w":71},{"$type":"MyPaint.Ellipse, MyPaint","pos1":"74, 298","pos2":"297, 598","x":74,"y":298,"h":223,"w":300},{"$type":"MyPaint.Square, MyPaint","pos1":"599, 320","pos2":"423, 522","x":423,"y":320,"h":176,"w":202}]
+[{"$type":"MyPaint.Triangle, MyPaint","pos1":"243, 169","pos2":"524, 445","x":243,"y":169,"h":281,"w":276,"clr":"Black","pWidth":1}]
