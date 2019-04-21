@@ -10,10 +10,10 @@ namespace MyPaint
 {
     class Line : Shape
     {
-//        public Point pos1, pos2;
-//        public int x, y, h, w;
-//        private Color clr;
-//        private int pWidth;
+        //        public Point pos1, pos2;
+        //        public int x, y, h, w;
+        //        private Color clr;
+        //        private int pWidth;
         public Line(Color clr, int pWidth)
         {
             this.clr = clr;

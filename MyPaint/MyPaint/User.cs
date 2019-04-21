@@ -37,5 +37,11 @@ namespace MyPaint
             User u = new Hero(1, "11", "1");
             u.Say();
         }
+        /*
+        public void goGas(Car car)
+        {
+
+        }
+        */
     }
 }

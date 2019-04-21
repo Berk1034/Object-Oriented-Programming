@@ -41,3 +41,17 @@ C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2\GitHub\Object-Oriented-
 C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\bin\Debug\Newtonsoft.Json.dll
 C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\bin\Debug\Newtonsoft.Json.pdb
 C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\obj\Debug\MyPaint.csproj.CopyComplete
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\obj\Debug\MyPaint.csprojAssemblyReference.cache
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\obj\Debug\MyPaint.MainForm.resources
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\obj\Debug\MyPaint.Properties.Resources.resources
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\obj\Debug\MyPaint.csproj.GenerateResource.cache
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\obj\Debug\MyPaint.csproj.CoreCompileInputs.cache
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\obj\Debug\MyPaint.exe
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\obj\Debug\MyPaint.pdb
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\bin\Debug\MyPaint.exe.config
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\bin\Debug\MyPaint.exe
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\bin\Debug\MyPaint.pdb
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\bin\Debug\Newtonsoft.Json.pdb
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\obj\Debug\MyPaint.csproj.CopyComplete
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\bin\Debug\Newtonsoft.Json.dll
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\GitHub\Object-Oriented-Programming\MyPaint\MyPaint\bin\Debug\Newtonsoft.Json.xml

@@ -38,9 +38,9 @@ namespace MyPaint
         public MainForm()
         {
             InitializeComponent();
-//            one = new Point(0, 0);
-//            two = new Point(700, 100);
-/*
+//          one = new Point(0, 0);
+//          two = new Point(700, 100);
+            /*
             ListOfShapes.Add(new Line(Current, penWidth));
             one = new Point(10, 200);
             two = new Point(500, 100);
@@ -165,7 +165,7 @@ namespace MyPaint
                     }
                     catch(Exception exception)
                     {
-                        MessageBox.Show("Serialization error with message = ", exception.Message);
+                        MessageBox.Show(exception.Message, "Serialization error with message");
                     }
                 }
             }
@@ -195,7 +195,7 @@ namespace MyPaint
                         }
                         catch (Exception exception)
                         {
-                            MessageBox.Show("Deserialization error with message = ", exception.Message);
+                            MessageBox.Show(exception.Message, "Deserialization error with message");
                         }
                     }
                 }
