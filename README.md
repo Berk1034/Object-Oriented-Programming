@@ -22,3 +22,9 @@ In the user interface, you must implement the following functions:*
 *Data Structure according to the variant: JSON.*  
 *Adding new classes to the hierarchy should not lead to the need to rewrite existing code, and not to use if-else / switch-case, reflection.
 Optional: implementation graphical interface.*
+
+## Task 4:
+*"Plugins - hierarchy"*
+
+*Based on 2 or 3 tasks, expand the existing hierarchy with new classes using dynamic module loading (plug-in). New modules should add or expand the functionality of the basic program: a new class in the hierarchy, functions for working with it, new elements in the user interface for working with a new class.
+You can load modules from the folder or via the parameter string in the main module with the name of the new module and possible recompilation. Ideally, adding a new module should be performed by its dynamic loading, i.e. should not require changing the program code at all.*
