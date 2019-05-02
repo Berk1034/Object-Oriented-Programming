@@ -1,0 +1,6 @@
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\LAB4\MyShape\MyShape\bin\Debug\MyShape.dll
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\LAB4\MyShape\MyShape\bin\Debug\MyShape.pdb
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\LAB4\MyShape\MyShape\obj\Debug\MyShape.csprojAssemblyReference.cache
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\LAB4\MyShape\MyShape\obj\Debug\MyShape.csproj.CoreCompileInputs.cache
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\LAB4\MyShape\MyShape\obj\Debug\MyShape.dll
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\LAB4\MyShape\MyShape\obj\Debug\MyShape.pdb
