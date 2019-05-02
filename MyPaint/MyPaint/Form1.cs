@@ -8,13 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using Newtonsoft.Json; 
+using Newtonsoft.Json;
+using System.Reflection;
+//using MyDrawingPencil;
+using MyShape;
 
 namespace MyPaint
 {
     public partial class MainForm : Form
     {
         const String SerializationFile = "figures.json";
+        const String PluginFile = "MyDrawingPencil";
 
         public enum Shapes
         {
@@ -26,8 +30,10 @@ namespace MyPaint
             Triangle
         }
 
+        private Assembly a;
         private Bitmap Bmp;
         private bool press = false;
+        private bool plugin = false;
         private Point one, two;
         private Color Current = Color.Black;
         private int penWidth = 1;
@@ -54,14 +60,18 @@ namespace MyPaint
             */
             Bitmap bmp = new Bitmap(ShapePictureBox.Width, ShapePictureBox.Height);
             Bmp = bmp;
-/*
-            foreach (Shape Shp in ListOfShapes)
-            {
-                CountCanvasPoints();
-                Bmp = Shp.Draw(Bmp, x, y, h, w, one, two);
-                ShapePictureBox.Image = Bmp;
-            }
-*/
+
+            //Pencil pnc = new Pencil(Current, penWidth);
+            //Bmp = pnc.Draw(Bmp, 100, 200, 200, 200, new Point(10, 100), new Point(200, 200));
+            //ShapePictureBox.Image = Bmp;
+            /*
+                        foreach (Shape Shp in ListOfShapes)
+                        {
+                            CountCanvasPoints();
+                            Bmp = Shp.Draw(Bmp, x, y, h, w, one, two);
+                            ShapePictureBox.Image = Bmp;
+                        }
+            */
         }
 
         private void ShapePictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -201,6 +211,58 @@ namespace MyPaint
                 }
             }
             
+        }
+
+        private void btn_Plugin_Click(object sender, EventArgs e)
+        {
+            try {
+                if (!plugin)
+                {
+                    a = Assembly.Load(PluginFile);
+                    /*
+                    object[] construct = new object[2];
+                    construct[0] = Current;
+                    construct[1] = penWidth;
+                    //Object o = a.CreateInstance("Pencil",false,0,null, construct,null,null);
+                    Type t = a.GetType(PluginFile + ".Pencil");
+                    Object o = Activator.CreateInstance(t, construct);
+                    */
+                    //            this.figure = o as Shape;
+                    /*
+                    MethodInfo mi = t.GetMethod("Draw");
+                    object[] parameters = new object[7];
+                    parameters[0] = Bmp;
+                    parameters[1] = 100;
+                    parameters[2] = 200;
+                    parameters[3] = 200;
+                    parameters[4] = 200;
+                    parameters[5] = new Point(10, 100);
+                    parameters[6] = new Point(200, 200);
+                    this.figure = (Shape)o;
+                    Bmp = (Bitmap)mi.Invoke(o, parameters);
+                    //            Type tmp = o.GetType();
+                    ShapePictureBox.Image = Bmp;
+                    */
+                    //ListOfShapes.Add(o as Shape);//Cast Exception Base-class to .dll
+                    plugin = true;
+                    btn_Plugin.Text = "JustLine";
+                }
+                else
+                {
+                    object[] construct = new object[2];
+                    construct[0] = Current;
+                    construct[1] = penWidth;
+                    //Object o = a.CreateInstance("Pencil",false,0,null, construct,null,null);
+                    Type t = a.GetType(PluginFile + ".Pencil");
+                    Object o = Activator.CreateInstance(t, construct);
+                    this.figure = o as Shape;
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Loading plugin error with message");
+            }
+
         }
 
         private void btnClear_Click(object sender, EventArgs e)

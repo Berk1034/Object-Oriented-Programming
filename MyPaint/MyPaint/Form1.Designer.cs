@@ -45,6 +45,7 @@
             this.btnRectangle = new System.Windows.Forms.Button();
             this.pnlCommon = new System.Windows.Forms.Panel();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.btn_Plugin = new System.Windows.Forms.Button();
             this.pnlCanvas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ShapePictureBox)).BeginInit();
             this.pnlButtons.SuspendLayout();
@@ -57,19 +58,19 @@
             this.pnlCanvas.BackColor = System.Drawing.SystemColors.ControlDark;
             this.pnlCanvas.Controls.Add(this.ShapePictureBox);
             this.pnlCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlCanvas.Location = new System.Drawing.Point(76, 0);
-            this.pnlCanvas.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pnlCanvas.Location = new System.Drawing.Point(101, 0);
+            this.pnlCanvas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlCanvas.Name = "pnlCanvas";
-            this.pnlCanvas.Size = new System.Drawing.Size(855, 699);
+            this.pnlCanvas.Size = new System.Drawing.Size(1140, 860);
             this.pnlCanvas.TabIndex = 1;
             // 
             // ShapePictureBox
             // 
             this.ShapePictureBox.BackColor = System.Drawing.SystemColors.Window;
             this.ShapePictureBox.Location = new System.Drawing.Point(0, 0);
-            this.ShapePictureBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.ShapePictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ShapePictureBox.Name = "ShapePictureBox";
-            this.ShapePictureBox.Size = new System.Drawing.Size(856, 704);
+            this.ShapePictureBox.Size = new System.Drawing.Size(1141, 866);
             this.ShapePictureBox.TabIndex = 0;
             this.ShapePictureBox.TabStop = false;
             this.ShapePictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.ShapePictureBox_Paint);
@@ -79,10 +80,10 @@
             // 
             // btnLine
             // 
-            this.btnLine.Location = new System.Drawing.Point(0, 10);
-            this.btnLine.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnLine.Location = new System.Drawing.Point(0, 12);
+            this.btnLine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLine.Name = "btnLine";
-            this.btnLine.Size = new System.Drawing.Size(76, 49);
+            this.btnLine.Size = new System.Drawing.Size(101, 60);
             this.btnLine.TabIndex = 0;
             this.btnLine.Text = "Line";
             this.btnLine.UseVisualStyleBackColor = true;
@@ -91,6 +92,7 @@
             // pnlButtons
             // 
             this.pnlButtons.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnlButtons.Controls.Add(this.btn_Plugin);
             this.pnlButtons.Controls.Add(this.btnDeserialize);
             this.pnlButtons.Controls.Add(this.btnSerialize);
             this.pnlButtons.Controls.Add(this.btnTriangle);
@@ -105,17 +107,17 @@
             this.pnlButtons.Controls.Add(this.btnLine);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlButtons.Location = new System.Drawing.Point(0, 0);
-            this.pnlButtons.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pnlButtons.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(76, 699);
+            this.pnlButtons.Size = new System.Drawing.Size(101, 860);
             this.pnlButtons.TabIndex = 0;
             // 
             // btnDeserialize
             // 
-            this.btnDeserialize.Location = new System.Drawing.Point(0, 445);
-            this.btnDeserialize.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnDeserialize.Location = new System.Drawing.Point(0, 548);
+            this.btnDeserialize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDeserialize.Name = "btnDeserialize";
-            this.btnDeserialize.Size = new System.Drawing.Size(76, 49);
+            this.btnDeserialize.Size = new System.Drawing.Size(101, 60);
             this.btnDeserialize.TabIndex = 12;
             this.btnDeserialize.Text = "Deserialize";
             this.btnDeserialize.UseVisualStyleBackColor = true;
@@ -123,10 +125,10 @@
             // 
             // btnSerialize
             // 
-            this.btnSerialize.Location = new System.Drawing.Point(0, 390);
-            this.btnSerialize.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnSerialize.Location = new System.Drawing.Point(0, 480);
+            this.btnSerialize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSerialize.Name = "btnSerialize";
-            this.btnSerialize.Size = new System.Drawing.Size(76, 49);
+            this.btnSerialize.Size = new System.Drawing.Size(101, 60);
             this.btnSerialize.TabIndex = 11;
             this.btnSerialize.Text = "Serialize";
             this.btnSerialize.UseVisualStyleBackColor = true;
@@ -134,10 +136,10 @@
             // 
             // btnTriangle
             // 
-            this.btnTriangle.Location = new System.Drawing.Point(0, 279);
-            this.btnTriangle.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnTriangle.Location = new System.Drawing.Point(0, 343);
+            this.btnTriangle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTriangle.Name = "btnTriangle";
-            this.btnTriangle.Size = new System.Drawing.Size(76, 49);
+            this.btnTriangle.Size = new System.Drawing.Size(101, 60);
             this.btnTriangle.TabIndex = 10;
             this.btnTriangle.Text = "Triangle";
             this.btnTriangle.UseVisualStyleBackColor = true;
@@ -145,10 +147,10 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(0, 335);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnClear.Location = new System.Drawing.Point(0, 412);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(76, 49);
+            this.btnClear.Size = new System.Drawing.Size(101, 60);
             this.btnClear.TabIndex = 9;
             this.btnClear.Text = "Clear ALL";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -158,28 +160,27 @@
             // 
             this.lblPenWidth.AutoSize = true;
             this.lblPenWidth.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.lblPenWidth.Location = new System.Drawing.Point(2, 568);
-            this.lblPenWidth.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPenWidth.Location = new System.Drawing.Point(3, 699);
             this.lblPenWidth.Name = "lblPenWidth";
-            this.lblPenWidth.Size = new System.Drawing.Size(75, 13);
+            this.lblPenWidth.Size = new System.Drawing.Size(97, 17);
             this.lblPenWidth.TabIndex = 8;
             this.lblPenWidth.Text = "Change Width";
             // 
             // tBarWidth
             // 
-            this.tBarWidth.Location = new System.Drawing.Point(2, 584);
-            this.tBarWidth.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.tBarWidth.Location = new System.Drawing.Point(3, 719);
+            this.tBarWidth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tBarWidth.Name = "tBarWidth";
-            this.tBarWidth.Size = new System.Drawing.Size(71, 45);
+            this.tBarWidth.Size = new System.Drawing.Size(95, 56);
             this.tBarWidth.TabIndex = 7;
             this.tBarWidth.Scroll += new System.EventHandler(this.tBarWidth_Scroll);
             // 
             // btnChangePenColor
             // 
-            this.btnChangePenColor.Location = new System.Drawing.Point(0, 634);
-            this.btnChangePenColor.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnChangePenColor.Location = new System.Drawing.Point(0, 780);
+            this.btnChangePenColor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnChangePenColor.Name = "btnChangePenColor";
-            this.btnChangePenColor.Size = new System.Drawing.Size(76, 49);
+            this.btnChangePenColor.Size = new System.Drawing.Size(101, 60);
             this.btnChangePenColor.TabIndex = 6;
             this.btnChangePenColor.Text = "Change Pen Color";
             this.btnChangePenColor.UseVisualStyleBackColor = true;
@@ -187,10 +188,10 @@
             // 
             // btnCircle
             // 
-            this.btnCircle.Location = new System.Drawing.Point(0, 224);
-            this.btnCircle.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnCircle.Location = new System.Drawing.Point(0, 276);
+            this.btnCircle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCircle.Name = "btnCircle";
-            this.btnCircle.Size = new System.Drawing.Size(76, 49);
+            this.btnCircle.Size = new System.Drawing.Size(101, 60);
             this.btnCircle.TabIndex = 4;
             this.btnCircle.Text = "Circle";
             this.btnCircle.UseVisualStyleBackColor = true;
@@ -198,10 +199,10 @@
             // 
             // btnSquare
             // 
-            this.btnSquare.Location = new System.Drawing.Point(0, 171);
-            this.btnSquare.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnSquare.Location = new System.Drawing.Point(0, 210);
+            this.btnSquare.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSquare.Name = "btnSquare";
-            this.btnSquare.Size = new System.Drawing.Size(76, 49);
+            this.btnSquare.Size = new System.Drawing.Size(101, 60);
             this.btnSquare.TabIndex = 3;
             this.btnSquare.Text = "Square";
             this.btnSquare.UseVisualStyleBackColor = true;
@@ -209,10 +210,10 @@
             // 
             // btnEllipse
             // 
-            this.btnEllipse.Location = new System.Drawing.Point(0, 117);
-            this.btnEllipse.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnEllipse.Location = new System.Drawing.Point(0, 144);
+            this.btnEllipse.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEllipse.Name = "btnEllipse";
-            this.btnEllipse.Size = new System.Drawing.Size(76, 49);
+            this.btnEllipse.Size = new System.Drawing.Size(101, 60);
             this.btnEllipse.TabIndex = 2;
             this.btnEllipse.Text = "Ellipse";
             this.btnEllipse.UseVisualStyleBackColor = true;
@@ -220,10 +221,10 @@
             // 
             // btnRectangle
             // 
-            this.btnRectangle.Location = new System.Drawing.Point(0, 63);
-            this.btnRectangle.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnRectangle.Location = new System.Drawing.Point(0, 78);
+            this.btnRectangle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRectangle.Name = "btnRectangle";
-            this.btnRectangle.Size = new System.Drawing.Size(76, 49);
+            this.btnRectangle.Size = new System.Drawing.Size(101, 60);
             this.btnRectangle.TabIndex = 1;
             this.btnRectangle.Text = "Rectangle";
             this.btnRectangle.UseVisualStyleBackColor = true;
@@ -235,22 +236,33 @@
             this.pnlCommon.Controls.Add(this.pnlButtons);
             this.pnlCommon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCommon.Location = new System.Drawing.Point(0, 0);
-            this.pnlCommon.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pnlCommon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlCommon.Name = "pnlCommon";
-            this.pnlCommon.Size = new System.Drawing.Size(931, 699);
+            this.pnlCommon.Size = new System.Drawing.Size(1241, 860);
             this.pnlCommon.TabIndex = 0;
+            // 
+            // btn_Plugin
+            // 
+            this.btn_Plugin.Location = new System.Drawing.Point(0, 616);
+            this.btn_Plugin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btn_Plugin.Name = "btn_Plugin";
+            this.btn_Plugin.Size = new System.Drawing.Size(101, 60);
+            this.btn_Plugin.TabIndex = 1;
+            this.btn_Plugin.Text = "Load Plugin";
+            this.btn_Plugin.UseVisualStyleBackColor = true;
+            this.btn_Plugin.Click += new System.EventHandler(this.btn_Plugin_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 699);
+            this.ClientSize = new System.Drawing.Size(1241, 860);
             this.Controls.Add(this.pnlCommon);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(559, 289);
+            this.MinimumSize = new System.Drawing.Size(739, 345);
             this.Name = "MainForm";
             this.Text = "TheBestPaintEver";
             this.pnlCanvas.ResumeLayout(false);
@@ -281,6 +293,7 @@
         private System.Windows.Forms.Button btnTriangle;
         private System.Windows.Forms.Button btnSerialize;
         private System.Windows.Forms.Button btnDeserialize;
+        private System.Windows.Forms.Button btn_Plugin;
     }
 }
 
