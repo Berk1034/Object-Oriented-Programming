@@ -1,0 +1,15 @@
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\LAB4\MyDrawingPencil\MyDrawingPencil\bin\Debug\MyDrawingPencil.dll
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\LAB4\MyDrawingPencil\MyDrawingPencil\bin\Debug\MyDrawingPencil.pdb
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\LAB4\MyDrawingPencil\MyDrawingPencil\obj\Debug\MyDrawingPencil.csprojAssemblyReference.cache
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\LAB4\MyDrawingPencil\MyDrawingPencil\obj\Debug\MyDrawingPencil.csproj.CoreCompileInputs.cache
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\LAB4\MyDrawingPencil\MyDrawingPencil\obj\Debug\MyDrawingPencil.dll
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\LAB4\MyDrawingPencil\MyDrawingPencil\obj\Debug\MyDrawingPencil.pdb
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\LAB4\MyDrawingPencil\MyDrawingPencil\bin\Debug\MyShape.pdb
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3\LAB4\MyDrawingPencil\MyDrawingPencil\obj\Debug\MyDrawingPencil.csproj.CopyComplete
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3-4\LAB4\MyDrawingPencil\MyDrawingPencil\obj\Debug\MyDrawingPencil.csprojAssemblyReference.cache
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3-4\LAB4\MyDrawingPencil\MyDrawingPencil\obj\Debug\MyDrawingPencil.csproj.CoreCompileInputs.cache
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3-4\LAB4\MyDrawingPencil\MyDrawingPencil\obj\Debug\MyDrawingPencil.dll
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3-4\LAB4\MyDrawingPencil\MyDrawingPencil\obj\Debug\MyDrawingPencil.pdb
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3-4\LAB4\MyDrawingPencil\MyDrawingPencil\bin\Debug\MyDrawingPencil.dll
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3-4\LAB4\MyDrawingPencil\MyDrawingPencil\bin\Debug\MyDrawingPencil.pdb
+C:\!Work!\2 КУРС\4 СЕМ\ООТПиСП\LABS\LAB1-2-3-4\LAB4\MyDrawingPencil\MyDrawingPencil\obj\Debug\MyDrawingPencil.csproj.CopyComplete
