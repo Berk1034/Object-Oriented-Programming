@@ -10,9 +10,9 @@ using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
 using System.Reflection;
+using System.Windows.Input;
 //using MyDrawingPencil;
 using MyShape;
-
 namespace MyPaint
 {
     public partial class MainForm : Form
@@ -25,9 +25,9 @@ namespace MyPaint
             Line,
             Rectangle,
             Ellipse,
+            Triangle,
             Square,
-            Circle,
-            Triangle
+            Circle
         }
 
         private Assembly a;
@@ -40,6 +40,7 @@ namespace MyPaint
         private Shape figure;
         private int x, y, w, h;
         public List<Shape> ListOfShapes = new List<Shape>();
+        private Dictionary<string, ShapeFactory> FactoriesList;
 
         public MainForm()
         {
@@ -60,7 +61,7 @@ namespace MyPaint
             */
             Bitmap bmp = new Bitmap(ShapePictureBox.Width, ShapePictureBox.Height);
             Bmp = bmp;
-
+            FactoriesList = GetFactoriesDict(GetAllShapeButtonsNames(pnlShapes), GetAllFactories());
             //Pencil pnc = new Pencil(Current, penWidth);
             //Bmp = pnc.Draw(Bmp, 100, 200, 200, 200, new Point(10, 100), new Point(200, 200));
             //ShapePictureBox.Image = Bmp;
@@ -72,6 +73,7 @@ namespace MyPaint
                             ShapePictureBox.Image = Bmp;
                         }
             */
+            Console.ReadLine();
         }
 
         private void ShapePictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -124,43 +126,86 @@ namespace MyPaint
             }
         }
 
+        private List<string> GetAllShapeButtonsNames(Panel panel)
+        {
+            var result = new List<string>();
+            var items = panel.Controls;
+
+            foreach (var item in items)
+                if (item.GetType().Name == "Button")
+                    result.Add((item as Button).Name);
+
+            return result;
+        }
+
+        private List<ShapeFactory> GetAllFactories()
+        {
+            var result = new List<ShapeFactory>();
+
+            result.Add(new LineFactory());
+            result.Add(new RectangleFactory());
+            result.Add(new EllipseFactory());
+            result.Add(new TriangleFactory());
+            result.Add(new SquareFactory());
+            result.Add(new CircleFactory());
+
+            return result;
+        }
+
+        private Dictionary<string, ShapeFactory> GetFactoriesDict(List<string> NamesList, List<ShapeFactory> FactoriesList)
+        {
+            var result = new Dictionary<string, ShapeFactory>();
+
+            for (var i = 0; i < NamesList.Count; i++)
+                result.Add(NamesList[i], FactoriesList[i]);
+
+            return result;
+        }
+
+/*
         private void btnLine_Click(object sender, EventArgs e)
         {
-            Line temp = new Line(Current, penWidth);
-            this.figure = temp;
+            this.figure = FactoriesList[((Button)sender).Name].Create(Current, penWidth);
+//            Line temp = new Line(Current, penWidth);
+//            this.figure = temp;
         }
 
         private void btnRectangle_Click(object sender, EventArgs e)
         {
-            Rectangle temp = new Rectangle(Current, penWidth);
-            this.figure = temp;
+            this.figure = FactoriesList[((Button)sender).Name].Create(Current, penWidth);
+//            Rectangle temp = new Rectangle(Current, penWidth);
+//            this.figure = temp;
         }
 
         private void btnEllipse_Click(object sender, EventArgs e)
         {
-            Ellipse temp = new Ellipse(Current, penWidth);
-            this.figure = temp;
+            this.figure = FactoriesList[((Button)sender).Name].Create(Current, penWidth);
+//            Ellipse temp = new Ellipse(Current, penWidth);
+//            this.figure = temp;
         }
 
         private void btnSquare_Click(object sender, EventArgs e)
         {
-            Square temp = new Square(Current, penWidth);
-            this.figure = temp;
+            this.figure = FactoriesList[((Button)sender).Name].Create(Current, penWidth);
+//            Square temp = new Square(Current, penWidth);
+//            this.figure = temp;
         }
 
         private void btnCircle_Click(object sender, EventArgs e)
         {
-            Circle temp = new Circle(Current, penWidth);
-            this.figure = temp;
+            this.figure = FactoriesList[((Button)sender).Name].Create(Current, penWidth);
+//            Circle temp = new Circle(Current, penWidth);
+//            this.figure = temp;
         }
                           
         private void btnTriangle_Click(object sender, EventArgs e)
         {
-            Triangle temp = new Triangle(Current, penWidth);
-            this.figure = temp;
+            this.figure = FactoriesList[((Button)sender).Name].Create(Current, penWidth);
+//            Triangle temp = new Triangle(Current, penWidth);
+//            this.figure = temp;
         }
-
-        private void btn_Serialize_Click(object sender, EventArgs e)
+*/
+        private void btnSerialize_Click(object sender, EventArgs e)
         {
             JsonSerializer jsonSerializer = new JsonSerializer();
             jsonSerializer.TypeNameHandling = TypeNameHandling.Objects;
@@ -213,9 +258,10 @@ namespace MyPaint
             
         }
 
-        private void btn_Plugin_Click(object sender, EventArgs e)
+        private void btnPlugin_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 if (!plugin)
                 {
                     a = Assembly.Load(PluginFile);
@@ -245,7 +291,7 @@ namespace MyPaint
                     */
                     //ListOfShapes.Add(o as Shape);//Cast Exception Base-class to .dll
                     plugin = true;
-                    btn_Plugin.Text = "JustLine";
+                    btnPlugin.Text = "JustLine";
                 }
                 else
                 {
@@ -263,6 +309,11 @@ namespace MyPaint
                 MessageBox.Show(exception.Message, "Loading plugin error with message");
             }
 
+        }
+
+        private void btnShape_Click(object sender, EventArgs e)
+        {
+            this.figure = FactoriesList[((Button)sender).Name].Create(Current, penWidth);
         }
 
         private void btnClear_Click(object sender, EventArgs e)

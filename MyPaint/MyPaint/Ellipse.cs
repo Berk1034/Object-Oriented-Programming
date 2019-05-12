@@ -15,6 +15,7 @@ namespace MyPaint
 //        public int x, y, h, w;
 //        private Color clr;
 //        private int pWidth;
+        
         public Ellipse(Color clr, int pWidth)
         {
             this.clr = clr;
