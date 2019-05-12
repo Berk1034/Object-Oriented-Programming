@@ -13,12 +13,14 @@ using System.Reflection;
 using System.Windows.Input;
 //using MyDrawingPencil;
 using MyShape;
+
 namespace MyPaint
 {
     public partial class MainForm : Form
     {
         const String SerializationFile = "figures.json";
-        const String PluginFile = "MyDrawingPencil";
+//        const String PluginFile = "MyDrawingPencil";
+        const String PluginFile = "MyClosedCurve";
 
         public enum Shapes
         {
@@ -30,15 +32,16 @@ namespace MyPaint
             Circle
         }
         
-        private Assembly a;
+//        private Assembly a;
         private Bitmap Bmp;
         private bool press = false;
-        private bool plugin = false;
+//        private bool plugin = false;
         private Point one, two;
         private Color Current = Color.Black;
         private int penWidth = 1;
         private Shape figure;
         private int x, y, w, h;
+        private int location = 40;
         public List<Shape> ListOfShapes = new List<Shape>();
         private object ShapeSender = new Button();
         private Dictionary<string, ShapeFactory> FactoriesList;
@@ -113,8 +116,8 @@ namespace MyPaint
                 figure.pWidth = penWidth;
                 figure.clr = Current;
                 ListOfShapes.Add(this.figure);
+                this.figure = FactoriesList[((Button)ShapeSender).Text].Create(Current, penWidth);
             }
-            this.figure = FactoriesList[((Button)ShapeSender).Text].Create(Current, penWidth);
         }
 
         private void ShapePictureBox_Paint(object sender, PaintEventArgs e)
@@ -220,7 +223,7 @@ namespace MyPaint
                     }
                     catch(Exception exception)
                     {
-                        MessageBox.Show(exception.Message, "Serialization error with message");
+                        MessageBox.Show(exception.Message, "Serialization Error");
                     }
                 }
             }
@@ -250,7 +253,7 @@ namespace MyPaint
                         }
                         catch (Exception exception)
                         {
-                            MessageBox.Show(exception.Message, "Deserialization error with message");
+                            MessageBox.Show(exception.Message, "Deserialization Error");
                         }
                     }
                 }
@@ -258,6 +261,50 @@ namespace MyPaint
             
         }
 
+        private void CreateButton(Panel pnlPlugins, ShapeFactory factory)
+        {
+            Button button = new Button();
+            pnlPlugins.Controls.Add(button);
+            button.Location = new Point(btnPlugin.Location.X, btnPlugin.Location.Y + location);
+            button.Name = "btn" + factory.Name;
+            button.Text = factory.Name;
+            button.Width = 76;
+            button.Height = 34;
+            button.BackColor = SystemColors.ControlLight;
+            button.ForeColor = SystemColors.ControlText;
+            button.Click += btnShape_Click;
+            location += 40;
+        }
+
+        private void btnPlugin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.figure = null;
+                OpenFileDialog openFileDlg = new OpenFileDialog();
+                openFileDlg.Title = "Choose Plugin";
+                openFileDlg.Filter = Plugin.dllFileExtension;
+
+                if (openFileDlg.ShowDialog() == DialogResult.OK)
+                {
+                    List<Assembly> assemblies = Plugin.LoadPlugin(openFileDlg.FileName);
+                    List<ShapeFactory> Factories = Plugin.GetFactories(assemblies);
+
+                    foreach (ShapeFactory Factory in Factories)
+                    {
+                        if (!FactoriesList.ContainsKey("btn" + Factory.Name))
+                            FactoriesList.Add("btn" + Factory.Name, Factory);
+                        CreateButton(pnlPlugins, Factory);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Loading Plugin Error");
+            }
+
+        }
+/*
         private void btnPlugin_Click(object sender, EventArgs e)
         {
             try
@@ -290,8 +337,11 @@ namespace MyPaint
                     ShapePictureBox.Image = Bmp;
                     */
                     //ListOfShapes.Add(o as Shape);//Cast Exception Base-class to .dll
+                    /*
                     plugin = true;
-                    btnPlugin.Text = "JustLine";
+//                    btnPlugin.Text = "JustLine";
+                    btnPlugin.Text = "ClosedCurve";
+
                 }
                 else
                 {
@@ -299,7 +349,7 @@ namespace MyPaint
                     construct[0] = Current;
                     construct[1] = penWidth;
                     //Object o = a.CreateInstance("Pencil",false,0,null, construct,null,null);
-                    Type t = a.GetType(PluginFile + ".Pencil");
+                    Type t = a.GetType(PluginFile + ".ClosedCurve");
                     Object o = Activator.CreateInstance(t, construct);
                     this.figure = o as Shape;
                 }
@@ -310,6 +360,7 @@ namespace MyPaint
             }
 
         }
+        */
 
         private void btnShape_Click(object sender, EventArgs e)
         {
