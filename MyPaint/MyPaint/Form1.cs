@@ -29,7 +29,7 @@ namespace MyPaint
             Square,
             Circle
         }
-
+        
         private Assembly a;
         private Bitmap Bmp;
         private bool press = false;
@@ -40,6 +40,7 @@ namespace MyPaint
         private Shape figure;
         private int x, y, w, h;
         public List<Shape> ListOfShapes = new List<Shape>();
+        private object ShapeSender = new Button();
         private Dictionary<string, ShapeFactory> FactoriesList;
 
         public MainForm()
@@ -73,7 +74,6 @@ namespace MyPaint
                             ShapePictureBox.Image = Bmp;
                         }
             */
-            Console.ReadLine();
         }
 
         private void ShapePictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -114,7 +114,7 @@ namespace MyPaint
                 figure.clr = Current;
                 ListOfShapes.Add(this.figure);
             }
-            figure = null;
+            this.figure = FactoriesList[((Button)ShapeSender).Text].Create(Current, penWidth);
         }
 
         private void ShapePictureBox_Paint(object sender, PaintEventArgs e)
@@ -313,7 +313,8 @@ namespace MyPaint
 
         private void btnShape_Click(object sender, EventArgs e)
         {
-            this.figure = FactoriesList[((Button)sender).Name].Create(Current, penWidth);
+            ((Button)ShapeSender).Text = ((Button)sender).Name;
+            this.figure = FactoriesList[((Button)ShapeSender).Text].Create(Current, penWidth);
         }
 
         private void btnClear_Click(object sender, EventArgs e)
