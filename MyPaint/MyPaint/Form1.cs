@@ -37,6 +37,7 @@ namespace MyPaint
         private Bitmap Bmp;
         private bool press = false;
 //        private bool plugin = false;
+        private bool user = false;
         private Point one, two;
         private Point MinP, MaxP;
         private Color Current = Color.Black;
@@ -86,7 +87,7 @@ namespace MyPaint
 
         private void ShapePictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (figure != null)
+            if (figure != null || user)
             {
                 Cursor.Current = Cursors.Cross;
                 press = true;
@@ -96,7 +97,7 @@ namespace MyPaint
 
         private void ShapePictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            if (figure != null && press)
+            if ((figure != null && press) || user)
             {
                 two = e.Location;
                 ShapePictureBox.Refresh();
@@ -105,7 +106,7 @@ namespace MyPaint
 
         private void ShapePictureBox_MouseUp(object sender, MouseEventArgs e)
         {
-            if (figure != null)
+            if (figure != null && !user)
             {
                 Cursor.Current = Cursors.Default;
                 press = false;
@@ -123,14 +124,35 @@ namespace MyPaint
                 ListOfShapes.Add(this.figure);
                 this.figure = FactoriesList[((Button)ShapeSender).Text].Create(Current, penWidth);
             }
+            if (user)
+            {
+                Cursor.Current = Cursors.Default;
+                user = false;
+                press = false;
+                two = e.Location;
+                foreach (Shape figure in ListOfUserShapes)
+                {
+                    Bmp = figure.Draw(Bmp, x, y, h, w, one, two);
+//                    ShapePictureBox.Image = Bmp;
+                }
+                ShapePictureBox.Image = Bmp;
+            }
         }
 
         private void ShapePictureBox_Paint(object sender, PaintEventArgs e)
         {
-            if (figure != null && press)
+            if (figure != null && press && !user)
             {
                 CountCanvasPoints();
                 figure.DrawE(x, y, h, w, one, two, e);
+            }
+            if (user && press)
+            {
+                CountCanvasPoints();
+                foreach (Shape figure in ListOfUserShapes)
+                {
+                    figure.DrawE(x, y, h, w, one, two, e);
+                }
             }
         }
 
@@ -420,11 +442,32 @@ namespace MyPaint
 
         private void btnCreateShape_Click(object sender, EventArgs e)
         {
-            FindMinAndMaxPoints();
-            foreach (Shape shp in ListOfShapes)
+            try
             {
-                ListOfUserShapes.Add(shp);
+//                press = false;
+                this.figure = null;
+                foreach (Shape shp in ListOfShapes)
+                {
+                    ListOfUserShapes.Add(shp);
+                }
+                FindMinAndMaxPoints();
+                foreach (Shape usershape in ListOfUserShapes)
+                {
+                    usershape.pos1.X = usershape.pos1.X - MinP.X;
+                    usershape.pos1.Y = usershape.pos1.Y - MinP.Y;
+                    usershape.x = usershape.pos1.X;
+                    usershape.y = usershape.pos1.Y;
+                    usershape.w = usershape.w - MaxP.X;
+                    usershape.h = usershape.h - MaxP.Y;
+                }
+
+                user = true;
             }
+            catch(Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Creating Shape Error");
+            }
+
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -451,10 +494,20 @@ namespace MyPaint
 
         public void CountCanvasPoints()
         {
-            x = Math.Min(one.X, two.X);
-            y = Math.Min(one.Y, two.Y);
-            h = Math.Abs(one.X - two.X);
-            w = Math.Abs(one.Y - two.Y);
+            if (!user)
+            {
+                x = Math.Min(one.X, two.X);
+                y = Math.Min(one.Y, two.Y);
+                h = Math.Abs(one.X - two.X);
+                w = Math.Abs(one.Y - two.Y);
+            }
+            else
+            {
+                x = Math.Min(one.X - MinP.X, two.X - MinP.X);
+                y = Math.Min(one.X - MinP.X, two.X - MinP.X);
+                h = Math.Abs(one.X - two.Y);
+                w = Math.Abs(one.X - two.Y);
+            }
         }
 
         public void FindMinAndMaxPoints()
