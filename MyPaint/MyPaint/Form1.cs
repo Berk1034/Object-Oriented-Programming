@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Windows.Input;
 //using MyDrawingPencil;
 using MyShape;
+using System.Xml.Linq;
 
 namespace MyPaint
 {
@@ -37,12 +38,14 @@ namespace MyPaint
         private bool press = false;
 //        private bool plugin = false;
         private Point one, two;
+        private Point MinP, MaxP;
         private Color Current = Color.Black;
         private int penWidth = 1;
         private Shape figure;
         private int x, y, w, h;
         private int location = 40;
         public List<Shape> ListOfShapes = new List<Shape>();
+        public List<Shape> ListOfUserShapes = new List<Shape>();
         private object ShapeSender = new Button();
         private Dictionary<string, ShapeFactory> FactoriesList;
 
@@ -77,6 +80,8 @@ namespace MyPaint
                             ShapePictureBox.Image = Bmp;
                         }
             */
+            MinP = new Point(0, 0);
+            MaxP = new Point(ShapePictureBox.Width, ShapePictureBox.Height);
         }
 
         private void ShapePictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -368,6 +373,60 @@ namespace MyPaint
             this.figure = FactoriesList[((Button)ShapeSender).Text].Create(Current, penWidth);
         }
 
+        private void btnSaveSettings_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.figure = null;
+                XDocument xdoc = new XDocument();
+                XElement pencolor = new XElement("PenColor", Current.ToArgb().ToString());
+                XElement penwidth = new XElement("PenWidth", penWidth.ToString());
+                XElement background = new XElement("BackgroundColor", ShapePictureBox.BackColor.ToArgb().ToString());
+                XElement settings = new XElement("settings");
+                settings.Add(pencolor);
+                settings.Add(penwidth);
+                settings.Add(background);
+                xdoc.Add(settings);
+                xdoc.Save("settings.xml");
+            }
+            catch(Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Save Settings Error");
+            }
+        }
+
+        private void btnLoadSettings_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.figure = null;
+                XDocument xdoc = XDocument.Load("settings.xml");
+                Current = Color.FromArgb(Int32.Parse(xdoc.Root.Element("PenColor").Value));
+                penWidth = Int32.Parse(xdoc.Root.Element("PenWidth").Value);
+                ShapePictureBox.BackColor = Color.FromArgb(Int32.Parse(xdoc.Root.Element("BackgroundColor").Value));
+            }
+            catch(Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Load Settings Error");
+            }
+        }
+
+        private void btnChangeBackgroundColor_Click(object sender, EventArgs e)
+        {
+            this.figure = null;
+            colorDialog.ShowDialog();
+            ShapePictureBox.BackColor = colorDialog.Color;
+        }
+
+        private void btnCreateShape_Click(object sender, EventArgs e)
+        {
+            FindMinAndMaxPoints();
+            foreach (Shape shp in ListOfShapes)
+            {
+                ListOfUserShapes.Add(shp);
+            }
+        }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             ShapePictureBox.Image = null;
@@ -396,6 +455,39 @@ namespace MyPaint
             y = Math.Min(one.Y, two.Y);
             h = Math.Abs(one.X - two.X);
             w = Math.Abs(one.Y - two.Y);
+        }
+
+        public void FindMinAndMaxPoints()
+        {
+            MinP.X = ListOfUserShapes.Min(shape => shape.pos1.X);
+            MinP.Y = ListOfUserShapes.Min(shape => shape.pos1.Y);
+            MaxP.X = ListOfUserShapes.Max(shape => shape.pos1.X);
+            MaxP.Y = ListOfUserShapes.Max(shape => shape.pos1.Y);
+
+            Point tempPointMin = new Point(MinP.X, MinP.Y);
+            Point tempPointMax = new Point(MaxP.X, MaxP.Y);
+
+            MinP.X = ListOfUserShapes.Min(shape => shape.pos2.X);
+            MinP.Y = ListOfUserShapes.Min(shape => shape.pos2.Y);
+            MaxP.X = ListOfUserShapes.Max(shape => shape.pos2.X);
+            MaxP.Y = ListOfUserShapes.Max(shape => shape.pos2.Y);
+
+            if(MinP.X > tempPointMin.X)
+            {
+                MinP.X = tempPointMin.X;
+            }
+            if (MinP.Y > tempPointMin.Y)
+            {
+                MinP.Y = tempPointMin.Y;
+            }
+            if (MaxP.X < tempPointMax.X)
+            {
+                MaxP.X = tempPointMax.X;
+            }
+            if (MaxP.Y < tempPointMax.Y)
+            {
+                MaxP.Y = tempPointMax.Y;
+            }
         }
     }
 }

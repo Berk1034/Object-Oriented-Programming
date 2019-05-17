@@ -32,29 +32,34 @@
             this.ShapePictureBox = new System.Windows.Forms.PictureBox();
             this.btnLine = new System.Windows.Forms.Button();
             this.pnlButtons = new System.Windows.Forms.Panel();
+            this.btnCreateShape = new System.Windows.Forms.Button();
+            this.btnChangeBackgroundColor = new System.Windows.Forms.Button();
+            this.btnChangePenColor = new System.Windows.Forms.Button();
+            this.lblSettings = new System.Windows.Forms.Label();
+            this.btnLoadSettings = new System.Windows.Forms.Button();
+            this.pnlPlugins = new System.Windows.Forms.Panel();
+            this.btnPlugin = new System.Windows.Forms.Button();
+            this.btnSaveSettings = new System.Windows.Forms.Button();
             this.pnlShapes = new System.Windows.Forms.Panel();
             this.btnRectangle = new System.Windows.Forms.Button();
             this.btnEllipse = new System.Windows.Forms.Button();
             this.btnTriangle = new System.Windows.Forms.Button();
             this.btnSquare = new System.Windows.Forms.Button();
             this.btnCircle = new System.Windows.Forms.Button();
-            this.btnPlugin = new System.Windows.Forms.Button();
             this.btnDeserialize = new System.Windows.Forms.Button();
             this.btnSerialize = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.lblPenWidth = new System.Windows.Forms.Label();
             this.tBarWidth = new System.Windows.Forms.TrackBar();
-            this.btnChangePenColor = new System.Windows.Forms.Button();
             this.pnlCommon = new System.Windows.Forms.Panel();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.pnlPlugins = new System.Windows.Forms.Panel();
             this.pnlCanvas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ShapePictureBox)).BeginInit();
             this.pnlButtons.SuspendLayout();
+            this.pnlPlugins.SuspendLayout();
             this.pnlShapes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tBarWidth)).BeginInit();
             this.pnlCommon.SuspendLayout();
-            this.pnlPlugins.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlCanvas
@@ -62,19 +67,19 @@
             this.pnlCanvas.BackColor = System.Drawing.SystemColors.ControlDark;
             this.pnlCanvas.Controls.Add(this.ShapePictureBox);
             this.pnlCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlCanvas.Location = new System.Drawing.Point(101, 0);
-            this.pnlCanvas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pnlCanvas.Location = new System.Drawing.Point(76, 0);
+            this.pnlCanvas.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pnlCanvas.Name = "pnlCanvas";
-            this.pnlCanvas.Size = new System.Drawing.Size(1140, 860);
+            this.pnlCanvas.Size = new System.Drawing.Size(854, 702);
             this.pnlCanvas.TabIndex = 1;
             // 
             // ShapePictureBox
             // 
             this.ShapePictureBox.BackColor = System.Drawing.SystemColors.Window;
             this.ShapePictureBox.Location = new System.Drawing.Point(0, 0);
-            this.ShapePictureBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ShapePictureBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ShapePictureBox.Name = "ShapePictureBox";
-            this.ShapePictureBox.Size = new System.Drawing.Size(1141, 866);
+            this.ShapePictureBox.Size = new System.Drawing.Size(856, 704);
             this.ShapePictureBox.TabIndex = 0;
             this.ShapePictureBox.TabStop = false;
             this.ShapePictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.ShapePictureBox_Paint);
@@ -84,10 +89,10 @@
             // 
             // btnLine
             // 
-            this.btnLine.Location = new System.Drawing.Point(0, 4);
-            this.btnLine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnLine.Location = new System.Drawing.Point(0, 3);
+            this.btnLine.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnLine.Name = "btnLine";
-            this.btnLine.Size = new System.Drawing.Size(101, 40);
+            this.btnLine.Size = new System.Drawing.Size(76, 33);
             this.btnLine.TabIndex = 0;
             this.btnLine.Text = "Line";
             this.btnLine.UseVisualStyleBackColor = true;
@@ -96,20 +101,111 @@
             // pnlButtons
             // 
             this.pnlButtons.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnlButtons.Controls.Add(this.btnCreateShape);
+            this.pnlButtons.Controls.Add(this.btnChangeBackgroundColor);
+            this.pnlButtons.Controls.Add(this.btnChangePenColor);
+            this.pnlButtons.Controls.Add(this.lblSettings);
+            this.pnlButtons.Controls.Add(this.btnLoadSettings);
             this.pnlButtons.Controls.Add(this.pnlPlugins);
+            this.pnlButtons.Controls.Add(this.btnSaveSettings);
             this.pnlButtons.Controls.Add(this.pnlShapes);
             this.pnlButtons.Controls.Add(this.btnDeserialize);
             this.pnlButtons.Controls.Add(this.btnSerialize);
             this.pnlButtons.Controls.Add(this.btnClear);
             this.pnlButtons.Controls.Add(this.lblPenWidth);
             this.pnlButtons.Controls.Add(this.tBarWidth);
-            this.pnlButtons.Controls.Add(this.btnChangePenColor);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlButtons.Location = new System.Drawing.Point(0, 0);
-            this.pnlButtons.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pnlButtons.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(101, 860);
+            this.pnlButtons.Size = new System.Drawing.Size(76, 702);
             this.pnlButtons.TabIndex = 0;
+            // 
+            // btnCreateShape
+            // 
+            this.btnCreateShape.Location = new System.Drawing.Point(0, 473);
+            this.btnCreateShape.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnCreateShape.Name = "btnCreateShape";
+            this.btnCreateShape.Size = new System.Drawing.Size(76, 34);
+            this.btnCreateShape.TabIndex = 12;
+            this.btnCreateShape.Text = "Create Shape";
+            this.btnCreateShape.UseVisualStyleBackColor = true;
+            this.btnCreateShape.Click += new System.EventHandler(this.btnCreateShape_Click);
+            // 
+            // btnChangeBackgroundColor
+            // 
+            this.btnChangeBackgroundColor.Location = new System.Drawing.Point(0, 664);
+            this.btnChangeBackgroundColor.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnChangeBackgroundColor.Name = "btnChangeBackgroundColor";
+            this.btnChangeBackgroundColor.Size = new System.Drawing.Size(76, 34);
+            this.btnChangeBackgroundColor.TabIndex = 7;
+            this.btnChangeBackgroundColor.Text = "Background Color";
+            this.btnChangeBackgroundColor.UseVisualStyleBackColor = true;
+            this.btnChangeBackgroundColor.Click += new System.EventHandler(this.btnChangeBackgroundColor_Click);
+            // 
+            // btnChangePenColor
+            // 
+            this.btnChangePenColor.Location = new System.Drawing.Point(0, 640);
+            this.btnChangePenColor.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnChangePenColor.Name = "btnChangePenColor";
+            this.btnChangePenColor.Size = new System.Drawing.Size(76, 23);
+            this.btnChangePenColor.TabIndex = 6;
+            this.btnChangePenColor.Text = "Pen Color";
+            this.btnChangePenColor.UseVisualStyleBackColor = true;
+            this.btnChangePenColor.Click += new System.EventHandler(this.btnChangePenColor_Click);
+            // 
+            // lblSettings
+            // 
+            this.lblSettings.AutoSize = true;
+            this.lblSettings.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.lblSettings.Location = new System.Drawing.Point(17, 561);
+            this.lblSettings.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSettings.Name = "lblSettings";
+            this.lblSettings.Size = new System.Drawing.Size(45, 13);
+            this.lblSettings.TabIndex = 14;
+            this.lblSettings.Text = "Settings";
+            // 
+            // btnLoadSettings
+            // 
+            this.btnLoadSettings.Location = new System.Drawing.Point(37, 576);
+            this.btnLoadSettings.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnLoadSettings.Name = "btnLoadSettings";
+            this.btnLoadSettings.Size = new System.Drawing.Size(39, 19);
+            this.btnLoadSettings.TabIndex = 4;
+            this.btnLoadSettings.Text = "Load";
+            this.btnLoadSettings.UseVisualStyleBackColor = true;
+            this.btnLoadSettings.Click += new System.EventHandler(this.btnLoadSettings_Click);
+            // 
+            // pnlPlugins
+            // 
+            this.pnlPlugins.Controls.Add(this.btnPlugin);
+            this.pnlPlugins.Location = new System.Drawing.Point(0, 354);
+            this.pnlPlugins.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pnlPlugins.Name = "pnlPlugins";
+            this.pnlPlugins.Size = new System.Drawing.Size(76, 114);
+            this.pnlPlugins.TabIndex = 13;
+            // 
+            // btnPlugin
+            // 
+            this.btnPlugin.Location = new System.Drawing.Point(0, 0);
+            this.btnPlugin.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnPlugin.Name = "btnPlugin";
+            this.btnPlugin.Size = new System.Drawing.Size(76, 33);
+            this.btnPlugin.TabIndex = 1;
+            this.btnPlugin.Text = "Load Plugin";
+            this.btnPlugin.UseVisualStyleBackColor = true;
+            this.btnPlugin.Click += new System.EventHandler(this.btnPlugin_Click);
+            // 
+            // btnSaveSettings
+            // 
+            this.btnSaveSettings.Location = new System.Drawing.Point(0, 576);
+            this.btnSaveSettings.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnSaveSettings.Name = "btnSaveSettings";
+            this.btnSaveSettings.Size = new System.Drawing.Size(40, 19);
+            this.btnSaveSettings.TabIndex = 3;
+            this.btnSaveSettings.Text = "Save";
+            this.btnSaveSettings.UseVisualStyleBackColor = true;
+            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
             // 
             // pnlShapes
             // 
@@ -120,16 +216,17 @@
             this.pnlShapes.Controls.Add(this.btnSquare);
             this.pnlShapes.Controls.Add(this.btnCircle);
             this.pnlShapes.Location = new System.Drawing.Point(0, 0);
+            this.pnlShapes.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pnlShapes.Name = "pnlShapes";
-            this.pnlShapes.Size = new System.Drawing.Size(101, 290);
+            this.pnlShapes.Size = new System.Drawing.Size(76, 236);
             this.pnlShapes.TabIndex = 1;
             // 
             // btnRectangle
             // 
-            this.btnRectangle.Location = new System.Drawing.Point(0, 52);
-            this.btnRectangle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRectangle.Location = new System.Drawing.Point(0, 42);
+            this.btnRectangle.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnRectangle.Name = "btnRectangle";
-            this.btnRectangle.Size = new System.Drawing.Size(101, 40);
+            this.btnRectangle.Size = new System.Drawing.Size(76, 33);
             this.btnRectangle.TabIndex = 1;
             this.btnRectangle.Text = "Rectangle";
             this.btnRectangle.UseVisualStyleBackColor = true;
@@ -137,10 +234,10 @@
             // 
             // btnEllipse
             // 
-            this.btnEllipse.Location = new System.Drawing.Point(0, 100);
-            this.btnEllipse.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnEllipse.Location = new System.Drawing.Point(0, 81);
+            this.btnEllipse.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnEllipse.Name = "btnEllipse";
-            this.btnEllipse.Size = new System.Drawing.Size(101, 40);
+            this.btnEllipse.Size = new System.Drawing.Size(76, 33);
             this.btnEllipse.TabIndex = 2;
             this.btnEllipse.Text = "Ellipse";
             this.btnEllipse.UseVisualStyleBackColor = true;
@@ -148,10 +245,10 @@
             // 
             // btnTriangle
             // 
-            this.btnTriangle.Location = new System.Drawing.Point(0, 244);
-            this.btnTriangle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTriangle.Location = new System.Drawing.Point(0, 198);
+            this.btnTriangle.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTriangle.Name = "btnTriangle";
-            this.btnTriangle.Size = new System.Drawing.Size(101, 40);
+            this.btnTriangle.Size = new System.Drawing.Size(76, 33);
             this.btnTriangle.TabIndex = 10;
             this.btnTriangle.Text = "Triangle";
             this.btnTriangle.UseVisualStyleBackColor = true;
@@ -159,10 +256,10 @@
             // 
             // btnSquare
             // 
-            this.btnSquare.Location = new System.Drawing.Point(0, 148);
-            this.btnSquare.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSquare.Location = new System.Drawing.Point(0, 120);
+            this.btnSquare.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnSquare.Name = "btnSquare";
-            this.btnSquare.Size = new System.Drawing.Size(101, 40);
+            this.btnSquare.Size = new System.Drawing.Size(76, 33);
             this.btnSquare.TabIndex = 3;
             this.btnSquare.Text = "Square";
             this.btnSquare.UseVisualStyleBackColor = true;
@@ -170,32 +267,21 @@
             // 
             // btnCircle
             // 
-            this.btnCircle.Location = new System.Drawing.Point(0, 196);
-            this.btnCircle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCircle.Location = new System.Drawing.Point(0, 159);
+            this.btnCircle.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCircle.Name = "btnCircle";
-            this.btnCircle.Size = new System.Drawing.Size(101, 40);
+            this.btnCircle.Size = new System.Drawing.Size(76, 33);
             this.btnCircle.TabIndex = 4;
             this.btnCircle.Text = "Circle";
             this.btnCircle.UseVisualStyleBackColor = true;
             this.btnCircle.Click += new System.EventHandler(this.btnShape_Click);
             // 
-            // btnPlugin
-            // 
-            this.btnPlugin.Location = new System.Drawing.Point(0, 0);
-            this.btnPlugin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnPlugin.Name = "btnPlugin";
-            this.btnPlugin.Size = new System.Drawing.Size(101, 40);
-            this.btnPlugin.TabIndex = 1;
-            this.btnPlugin.Text = "Load Plugin";
-            this.btnPlugin.UseVisualStyleBackColor = true;
-            this.btnPlugin.Click += new System.EventHandler(this.btnPlugin_Click);
-            // 
             // btnDeserialize
             // 
-            this.btnDeserialize.Location = new System.Drawing.Point(0, 388);
-            this.btnDeserialize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDeserialize.Location = new System.Drawing.Point(0, 315);
+            this.btnDeserialize.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDeserialize.Name = "btnDeserialize";
-            this.btnDeserialize.Size = new System.Drawing.Size(101, 40);
+            this.btnDeserialize.Size = new System.Drawing.Size(76, 33);
             this.btnDeserialize.TabIndex = 12;
             this.btnDeserialize.Text = "Deserialize";
             this.btnDeserialize.UseVisualStyleBackColor = true;
@@ -203,10 +289,10 @@
             // 
             // btnSerialize
             // 
-            this.btnSerialize.Location = new System.Drawing.Point(0, 340);
-            this.btnSerialize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSerialize.Location = new System.Drawing.Point(0, 276);
+            this.btnSerialize.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnSerialize.Name = "btnSerialize";
-            this.btnSerialize.Size = new System.Drawing.Size(101, 40);
+            this.btnSerialize.Size = new System.Drawing.Size(76, 33);
             this.btnSerialize.TabIndex = 11;
             this.btnSerialize.Text = "Serialize";
             this.btnSerialize.UseVisualStyleBackColor = true;
@@ -214,10 +300,10 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(0, 292);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnClear.Location = new System.Drawing.Point(0, 237);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(101, 40);
+            this.btnClear.Size = new System.Drawing.Size(76, 33);
             this.btnClear.TabIndex = 9;
             this.btnClear.Text = "Clear ALL";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -227,31 +313,21 @@
             // 
             this.lblPenWidth.AutoSize = true;
             this.lblPenWidth.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.lblPenWidth.Location = new System.Drawing.Point(3, 737);
+            this.lblPenWidth.Location = new System.Drawing.Point(2, 597);
+            this.lblPenWidth.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPenWidth.Name = "lblPenWidth";
-            this.lblPenWidth.Size = new System.Drawing.Size(97, 17);
+            this.lblPenWidth.Size = new System.Drawing.Size(75, 13);
             this.lblPenWidth.TabIndex = 8;
             this.lblPenWidth.Text = "Change Width";
             // 
             // tBarWidth
             // 
-            this.tBarWidth.Location = new System.Drawing.Point(3, 758);
-            this.tBarWidth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tBarWidth.Location = new System.Drawing.Point(2, 612);
+            this.tBarWidth.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tBarWidth.Name = "tBarWidth";
-            this.tBarWidth.Size = new System.Drawing.Size(95, 56);
+            this.tBarWidth.Size = new System.Drawing.Size(71, 45);
             this.tBarWidth.TabIndex = 7;
             this.tBarWidth.Scroll += new System.EventHandler(this.tBarWidth_Scroll);
-            // 
-            // btnChangePenColor
-            // 
-            this.btnChangePenColor.Location = new System.Drawing.Point(0, 813);
-            this.btnChangePenColor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnChangePenColor.Name = "btnChangePenColor";
-            this.btnChangePenColor.Size = new System.Drawing.Size(101, 43);
-            this.btnChangePenColor.TabIndex = 6;
-            this.btnChangePenColor.Text = "Change Pen Color";
-            this.btnChangePenColor.UseVisualStyleBackColor = true;
-            this.btnChangePenColor.Click += new System.EventHandler(this.btnChangePenColor_Click);
             // 
             // pnlCommon
             // 
@@ -259,40 +335,32 @@
             this.pnlCommon.Controls.Add(this.pnlButtons);
             this.pnlCommon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCommon.Location = new System.Drawing.Point(0, 0);
-            this.pnlCommon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pnlCommon.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pnlCommon.Name = "pnlCommon";
-            this.pnlCommon.Size = new System.Drawing.Size(1241, 860);
+            this.pnlCommon.Size = new System.Drawing.Size(930, 702);
             this.pnlCommon.TabIndex = 0;
-            // 
-            // pnlPlugins
-            // 
-            this.pnlPlugins.Controls.Add(this.btnPlugin);
-            this.pnlPlugins.Location = new System.Drawing.Point(0, 435);
-            this.pnlPlugins.Name = "pnlPlugins";
-            this.pnlPlugins.Size = new System.Drawing.Size(101, 299);
-            this.pnlPlugins.TabIndex = 13;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1241, 860);
+            this.ClientSize = new System.Drawing.Size(930, 702);
             this.Controls.Add(this.pnlCommon);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(739, 345);
+            this.MinimumSize = new System.Drawing.Size(552, 268);
             this.Name = "MainForm";
             this.Text = "TheBestPaintEver";
             this.pnlCanvas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ShapePictureBox)).EndInit();
             this.pnlButtons.ResumeLayout(false);
             this.pnlButtons.PerformLayout();
+            this.pnlPlugins.ResumeLayout(false);
             this.pnlShapes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tBarWidth)).EndInit();
             this.pnlCommon.ResumeLayout(false);
-            this.pnlPlugins.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -318,6 +386,11 @@
         private System.Windows.Forms.Button btnPlugin;
         private System.Windows.Forms.Panel pnlShapes;
         private System.Windows.Forms.Panel pnlPlugins;
+        private System.Windows.Forms.Label lblSettings;
+        private System.Windows.Forms.Button btnLoadSettings;
+        private System.Windows.Forms.Button btnSaveSettings;
+        private System.Windows.Forms.Button btnChangeBackgroundColor;
+        private System.Windows.Forms.Button btnCreateShape;
     }
 }
 
