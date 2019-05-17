@@ -28,3 +28,10 @@ Optional: implementation graphical interface.*
 
 *Based on 2 or 3 tasks, expand the existing hierarchy with new classes using dynamic module loading (plug-in). New modules should add or expand the functionality of the basic program: a new class in the hierarchy, functions for working with it, new elements in the user interface for working with a new class.
 You can load modules from the folder or via the parameter string in the main module with the name of the new module and possible recompilation. Ideally, adding a new module should be performed by its dynamic loading, i.e. should not require changing the program code at all.*
+
+## Task 6:
+
+*Extend the designed application with the ability to configure operation parameters.
+Add the ability to load and save configuration work.
+Configuration options to choose in accordance with your application, for example - background color, language, format of saved files, enable / disable menu with information, various settings
+The configuration must be read from the XML file and saved to it. The structure of the XML file to develop independently. Add correct error handling.*
