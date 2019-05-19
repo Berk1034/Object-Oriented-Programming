@@ -308,20 +308,27 @@ namespace MyPaint
             try
             {
                 this.figure = null;
-                OpenFileDialog openFileDlg = new OpenFileDialog();
-                openFileDlg.Title = "Choose Plugin";
-                openFileDlg.Filter = Plugin.dllFileExtension;
+                OpenFileDialog OpenFileDlg = new OpenFileDialog();
+                OpenFileDlg.Title = "Choose Plugin";
+                OpenFileDlg.Filter = Plugin.dllFileExtension;
+                OpenFileDlg.Multiselect = true;
 
-                if (openFileDlg.ShowDialog() == DialogResult.OK)
+                if (OpenFileDlg.ShowDialog() == DialogResult.OK)
                 {
-                    List<Assembly> assemblies = Plugin.LoadPlugin(openFileDlg.FileName);
-                    List<ShapeFactory> Factories = Plugin.GetFactories(assemblies);
+                    List<Assembly> Assemblies = Plugin.LoadPlugin(OpenFileDlg.FileNames);
+                    List<ShapeFactory> Factories = Plugin.GetFactories(Assemblies);
 
                     foreach (ShapeFactory Factory in Factories)
                     {
                         if (!FactoriesList.ContainsKey("btn" + Factory.Name))
+                        {
                             FactoriesList.Add("btn" + Factory.Name, Factory);
-                        CreateButton(pnlPlugins, Factory);
+                            CreateButton(pnlPlugins, Factory);
+                        }
+                        else
+                        {
+                            MessageBox.Show("This Plugin is already Loaded", "Loading Plugin WARNING");
+                        }
                     }
                 }
             }
@@ -331,7 +338,7 @@ namespace MyPaint
             }
 
         }
-/*
+        /*
         private void btnPlugin_Click(object sender, EventArgs e)
         {
             try

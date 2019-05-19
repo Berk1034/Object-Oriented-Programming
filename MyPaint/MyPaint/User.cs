@@ -36,6 +36,28 @@ namespace MyPaint
         {
             User u = new Hero(1, "11", "1");
             u.Say();
+            /*
+            class Singleton{
+                private static Singleton instance;
+                private Singleton(){}
+                public static Singleton getinstance(){
+                
+                }
+            }
+            FileStream stream = null;
+            try
+            {
+                stream = new FileStream("test.txt",FileMode.OpenOrCreate)
+            }
+            catch(Exception e) { }
+            finally
+            {
+                if (stream != null)
+                {
+                    stream.Dispose();
+                }
+            }
+            */
         }
         /*
         public void goGas(Car car)

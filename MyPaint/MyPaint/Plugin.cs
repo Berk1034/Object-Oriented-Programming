@@ -15,42 +15,40 @@ namespace MyPaint
 
         public static List<Assembly> LoadPlugin(params string[] paths)
         {
-            List<Assembly> result = new List<Assembly>();
+            List<Assembly> Assemblies = new List<Assembly>();
             foreach (var file in paths)
-                result.Add(Assembly.LoadFrom(file));
-
-            return result;
+                Assemblies.Add(Assembly.LoadFrom(file));
+            return Assemblies;
         }
 
-        public static List<ShapeFactory> GetFactories(List<Assembly> assemblies)
+        public static List<ShapeFactory> GetFactories(List<Assembly> Assemblies)
         {
-            List<ShapeFactory> factories = new List<ShapeFactory>();
-
-            foreach (Assembly assembly in assemblies)
+            List<ShapeFactory> Factories = new List<ShapeFactory>();
+            foreach (Assembly Assembly in Assemblies)
             {
                 try
                 {
-                    Type[] types = assembly.GetTypes();
-                    Plugin.LoadFactories(factories, types);
+                    Type[] Types = Assembly.GetTypes();
+                    Plugin.LoadFactories(Factories, Types);
                 }
                 catch (Exception exception)
                 {
                     MessageBox.Show(exception.Message, "Getting Factories Error");
                 }
             }
-            return factories;
+            return Factories;
         }
 
-        private static void LoadFactories(List<ShapeFactory> factories, Type[] types)
+        private static void LoadFactories(List<ShapeFactory> Factories, Type[] Types)
         {
-            foreach (Type type in types)
+            foreach (Type type in Types)
             {
                 if (type.IsClass && !type.IsAbstract && type.IsSubclassOf(typeof(ShapeFactory)))
                 {
                     try
                     {
                         ShapeFactory factory = Activator.CreateInstance(type) as ShapeFactory;
-                        factories.Add(factory);
+                        Factories.Add(factory);
                     }
                     catch (Exception exception)
                     {
