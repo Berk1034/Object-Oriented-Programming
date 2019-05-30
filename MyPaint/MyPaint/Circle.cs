@@ -20,21 +20,29 @@ namespace MyPaint
             this.clr = clr;
             this.pWidth = pWidth;
         }
-        public override Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second)
+        public override Bitmap Draw(Bitmap bmp, Point first, Point second)
         {
             Graphics graph = Graphics.FromImage(bmp);
             graph.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             Pen pen = new Pen(clr);
             pen.Width = pWidth;
+            int x = Math.Min(first.X, second.X);
+            int y = Math.Min(first.Y, second.Y);
+            int w = Math.Abs(first.X - second.X);
+            int h = Math.Abs(first.Y - second.Y);
             System.Drawing.Rectangle rect = new System.Drawing.Rectangle(x, y, w, w);
             graph.DrawEllipse(pen, rect);
             graph.Save();
             return bmp;
         }
-        public override void DrawE(int x, int y, int h, int w, Point first, Point second, PaintEventArgs e)
+        public override void DrawE(Point first, Point second, PaintEventArgs e)
         {
             Pen pen = new Pen(clr);
             pen.Width = pWidth;
+            int x = Math.Min(first.X, second.X);
+            int y = Math.Min(first.Y, second.Y);
+            int w = Math.Abs(first.X - second.X);
+            int h = Math.Abs(first.Y - second.Y);
             System.Drawing.Rectangle rect = new System.Drawing.Rectangle(x, y, w, w);
             e.Graphics.DrawEllipse(pen, rect);
         }

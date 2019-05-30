@@ -111,14 +111,16 @@ namespace MyPaint
                 Cursor.Current = Cursors.Default;
                 press = false;
                 two = e.Location;
-                Bmp = figure.Draw(Bmp, x, y, h, w, one, two);
+                Bmp = figure.Draw(Bmp,one, two);
                 ShapePictureBox.Image = Bmp;
                 figure.pos1 = one;
                 figure.pos2 = two;
+                /*
                 figure.x = x;
                 figure.y = y;
                 figure.h = h;
                 figure.w = w;
+                */
                 figure.pWidth = penWidth;
                 figure.clr = Current;
                 ListOfShapes.Add(this.figure);
@@ -130,11 +132,24 @@ namespace MyPaint
                 user = false;
                 press = false;
                 two = e.Location;
+                CustomShape customShape = new CustomShape("CUSTOMSHAPE", ListOfUserShapes, ShapePictureBox.Width, ShapePictureBox.Height);
+                customShape.Draw(Bmp,one, two);
+/*
                 foreach (Shape figure in ListOfUserShapes)
                 {
-                    Bmp = figure.Draw(Bmp, x, y, h, w, one, two);
+                    int newX1 = one.X + (two.X - one.X) * figure.pos1.X / ShapePictureBox.Width;//MaxP.X - MinP.X
+                    int newY1 = one.Y + (two.Y - one.Y) * figure.pos1.Y / ShapePictureBox.Height;//MaxP.Y - MinP.Y
+                    int newX2 = one.X + (two.X - one.X) * Math.Abs(figure.pos2.X - figure.pos1.X) / ShapePictureBox.Width;
+                    int newY2 = one.Y + (two.Y - one.Y) * Math.Abs(figure.pos2.Y - figure.pos1.Y) / ShapePictureBox.Height;
+                    /*
+                    x = one.X + (figure.pos1.X - 0) * (two.X - one.X) / (ShapePictureBox.Width - 0);
+                    y = one.Y + (figure.pos1.Y - 0) * (two.Y - one.Y) / (ShapePictureBox.Height - 0);
+                    h = x + (figure.pos2.X - figure.pos1.X) * (two.X - one.X) / (ShapePictureBox.Width - 0);
+                    w = y + (figure.pos2.Y - figure.pos1.Y) * (two.Y - one.Y) / (ShapePictureBox.Height - 0);
+                    */
+//                    Bmp = figure.Draw(Bmp, one, two);
 //                    ShapePictureBox.Image = Bmp;
-                }
+//                }
                 ShapePictureBox.Image = Bmp;
             }
         }
@@ -144,15 +159,29 @@ namespace MyPaint
             if (figure != null && press && !user)
             {
                 CountCanvasPoints();
-                figure.DrawE(x, y, h, w, one, two, e);
+                figure.DrawE(one, two, e);
             }
             if (user && press)
             {
-                CountCanvasPoints();
-                foreach (Shape figure in ListOfUserShapes)
-                {
-                    figure.DrawE(x, y, h, w, one, two, e);
-                }
+                CustomShape customShape = new CustomShape("CUSTOMSHAPE",ListOfUserShapes,ShapePictureBox.Width,ShapePictureBox.Height);
+                customShape.DrawE(one, two, e);
+//                CountCanvasPoints();
+//                foreach (Shape figure in ListOfUserShapes)
+//                {
+                    /*
+                    int newX1 = one.X + (two.X - one.X) * figure.pos1.X / ShapePictureBox.Width;//MaxP.X - MinP.X
+                    int newY1 = one.Y + (two.Y - one.Y) * figure.pos1.Y / ShapePictureBox.Height;//MaxP.Y - MinP.Y
+                    int newX2 = one.X + (two.X - one.X) * Math.Abs(figure.pos2.X - figure.pos1.X) / ShapePictureBox.Width;
+                    int newY2 = one.Y + (two.Y - one.Y) * Math.Abs(figure.pos2.Y - figure.pos1.Y) / ShapePictureBox.Height;
+                    */
+                    /*
+                    x = one.X + (figure.pos1.X - 0) * (two.X - one.X) / (ShapePictureBox.Width - 0);
+                    y = one.Y + (figure.pos1.Y - 0) * (two.Y - one.Y) / (ShapePictureBox.Height - 0);
+                    h = x + (figure.pos2.X - figure.pos1.X) * (two.X - one.X) / (ShapePictureBox.Width - 0);
+                    w = y + (figure.pos2.Y - figure.pos1.Y) * (two.Y - one.Y) / (ShapePictureBox.Height - 0);
+                    */
+//                    figure.DrawE(one, two, e);
+//                }
             }
         }
 
@@ -273,7 +302,7 @@ namespace MyPaint
                             ListOfShapes.AddRange(DeserializedShapes);
                             foreach (Shape Shp in ListOfShapes)
                             {
-                                Bmp = Shp.Draw(Bmp, Shp.x, Shp.y, Shp.h, Shp.w, Shp.pos1, Shp.pos2);
+                                Bmp = Shp.Draw(Bmp, Shp.pos1, Shp.pos2);
                                 ShapePictureBox.Image = Bmp;
                                 //ShapePictureBox.Refresh();
                             }
@@ -457,7 +486,9 @@ namespace MyPaint
                 {
                     ListOfUserShapes.Add(shp);
                 }
-                FindMinAndMaxPoints();
+
+//                FindMinAndMaxPoints();
+/*
                 foreach (Shape usershape in ListOfUserShapes)
                 {
                     usershape.pos1.X = usershape.pos1.X - MinP.X;
@@ -467,7 +498,7 @@ namespace MyPaint
                     usershape.w = usershape.w - MaxP.X;
                     usershape.h = usershape.h - MaxP.Y;
                 }
-
+*/
                 user = true;
             }
             catch(Exception exception)
@@ -501,20 +532,22 @@ namespace MyPaint
 
         public void CountCanvasPoints()
         {
-            if (!user)
-            {
+//            if (!user)
+//            {
+
                 x = Math.Min(one.X, two.X);
                 y = Math.Min(one.Y, two.Y);
                 h = Math.Abs(one.X - two.X);
                 w = Math.Abs(one.Y - two.Y);
-            }
-            else
+            //            }
+            //            else
+            /*
             {
                 x = Math.Min(one.X - MinP.X, two.X - MinP.X);
                 y = Math.Min(one.X - MinP.X, two.X - MinP.X);
-                h = Math.Abs(one.X - two.Y);
+                h = Math.Abs(one.X - two.X);
                 w = Math.Abs(one.X - two.Y);
-            }
+            }*/
         }
 
         public void FindMinAndMaxPoints()

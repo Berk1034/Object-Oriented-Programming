@@ -16,7 +16,7 @@ namespace MyClosedCurve
                 this.clr = clr;
                 this.pWidth = pWidth;
             }
-            public override Bitmap Draw(Bitmap bmp, int x, int y, int h, int w, Point first, Point second)
+            public override Bitmap Draw(Bitmap bmp,Point first, Point second)
             {
                 Pen pen = new Pen(clr);
                 pen.Width = pWidth;
@@ -27,7 +27,7 @@ namespace MyClosedCurve
                 graph.Save();
                 return bmp;
             }
-            public override void DrawE(int x, int y, int h, int w, Point first, Point second, PaintEventArgs e)
+            public override void DrawE(Point first, Point second, PaintEventArgs e)
             {
                 Pen pen = new Pen(clr);
                 pen.Width = pWidth;
