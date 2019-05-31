@@ -1,0 +1,1 @@
+[{"$type":"MyPaint.CustomShape, MyPaint","components":[{"$type":"MyPaint.Line, MyPaint","pos1":"99, 36","pos2":"368, 365","clr":"Black","pWidth":1},{"$type":"MyPaint.Triangle, MyPaint","pos1":"568, 68","pos2":"354, 239","clr":"Black","pWidth":1}],"width":856,"height":704,"pos1":"0, 0","pos2":"0, 0","clr":"","pWidth":0,"name":"heh","x1":0,"x2":0,"y1":0,"y2":0}]

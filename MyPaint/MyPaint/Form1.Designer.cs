@@ -32,6 +32,8 @@
             this.ShapePictureBox = new System.Windows.Forms.PictureBox();
             this.btnLine = new System.Windows.Forms.Button();
             this.pnlButtons = new System.Windows.Forms.Panel();
+            this.lblCustomShape = new System.Windows.Forms.Label();
+            this.textBoxCustomShape = new System.Windows.Forms.TextBox();
             this.btnCreateShape = new System.Windows.Forms.Button();
             this.btnChangeBackgroundColor = new System.Windows.Forms.Button();
             this.btnChangePenColor = new System.Windows.Forms.Button();
@@ -41,10 +43,10 @@
             this.btnPlugin = new System.Windows.Forms.Button();
             this.btnSaveSettings = new System.Windows.Forms.Button();
             this.pnlShapes = new System.Windows.Forms.Panel();
-            this.btnRectangle = new System.Windows.Forms.Button();
-            this.btnEllipse = new System.Windows.Forms.Button();
             this.btnTriangle = new System.Windows.Forms.Button();
+            this.btnRectangle = new System.Windows.Forms.Button();
             this.btnSquare = new System.Windows.Forms.Button();
+            this.btnEllipse = new System.Windows.Forms.Button();
             this.btnCircle = new System.Windows.Forms.Button();
             this.btnDeserialize = new System.Windows.Forms.Button();
             this.btnSerialize = new System.Windows.Forms.Button();
@@ -53,6 +55,9 @@
             this.tBarWidth = new System.Windows.Forms.TrackBar();
             this.pnlCommon = new System.Windows.Forms.Panel();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.comboBoxCustomShape = new System.Windows.Forms.ComboBox();
+            this.btnDeleteShape = new System.Windows.Forms.Button();
+            this.btnSaveShape = new System.Windows.Forms.Button();
             this.pnlCanvas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ShapePictureBox)).BeginInit();
             this.pnlButtons.SuspendLayout();
@@ -92,7 +97,7 @@
             this.btnLine.Location = new System.Drawing.Point(0, 4);
             this.btnLine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLine.Name = "btnLine";
-            this.btnLine.Size = new System.Drawing.Size(101, 41);
+            this.btnLine.Size = new System.Drawing.Size(101, 30);
             this.btnLine.TabIndex = 0;
             this.btnLine.Text = "Line";
             this.btnLine.UseVisualStyleBackColor = true;
@@ -101,6 +106,11 @@
             // pnlButtons
             // 
             this.pnlButtons.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnlButtons.Controls.Add(this.btnSaveShape);
+            this.pnlButtons.Controls.Add(this.btnDeleteShape);
+            this.pnlButtons.Controls.Add(this.comboBoxCustomShape);
+            this.pnlButtons.Controls.Add(this.lblCustomShape);
+            this.pnlButtons.Controls.Add(this.textBoxCustomShape);
             this.pnlButtons.Controls.Add(this.btnCreateShape);
             this.pnlButtons.Controls.Add(this.btnChangeBackgroundColor);
             this.pnlButtons.Controls.Add(this.btnChangePenColor);
@@ -121,14 +131,31 @@
             this.pnlButtons.Size = new System.Drawing.Size(101, 864);
             this.pnlButtons.TabIndex = 0;
             // 
+            // lblCustomShape
+            // 
+            this.lblCustomShape.AutoSize = true;
+            this.lblCustomShape.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.lblCustomShape.Location = new System.Drawing.Point(1, 501);
+            this.lblCustomShape.Name = "lblCustomShape";
+            this.lblCustomShape.Size = new System.Drawing.Size(100, 17);
+            this.lblCustomShape.TabIndex = 16;
+            this.lblCustomShape.Text = "Shape\'s Name";
+            // 
+            // textBoxCustomShape
+            // 
+            this.textBoxCustomShape.Location = new System.Drawing.Point(1, 521);
+            this.textBoxCustomShape.Name = "textBoxCustomShape";
+            this.textBoxCustomShape.Size = new System.Drawing.Size(99, 22);
+            this.textBoxCustomShape.TabIndex = 15;
+            // 
             // btnCreateShape
             // 
-            this.btnCreateShape.Location = new System.Drawing.Point(0, 582);
+            this.btnCreateShape.Location = new System.Drawing.Point(0, 550);
             this.btnCreateShape.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCreateShape.Name = "btnCreateShape";
-            this.btnCreateShape.Size = new System.Drawing.Size(101, 42);
+            this.btnCreateShape.Size = new System.Drawing.Size(101, 26);
             this.btnCreateShape.TabIndex = 12;
-            this.btnCreateShape.Text = "Create Shape";
+            this.btnCreateShape.Text = "Create";
             this.btnCreateShape.UseVisualStyleBackColor = true;
             this.btnCreateShape.Click += new System.EventHandler(this.btnCreateShape_Click);
             // 
@@ -178,7 +205,7 @@
             // pnlPlugins
             // 
             this.pnlPlugins.Controls.Add(this.btnPlugin);
-            this.pnlPlugins.Location = new System.Drawing.Point(0, 436);
+            this.pnlPlugins.Location = new System.Drawing.Point(0, 357);
             this.pnlPlugins.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlPlugins.Name = "pnlPlugins";
             this.pnlPlugins.Size = new System.Drawing.Size(101, 140);
@@ -189,7 +216,7 @@
             this.btnPlugin.Location = new System.Drawing.Point(0, 0);
             this.btnPlugin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPlugin.Name = "btnPlugin";
-            this.btnPlugin.Size = new System.Drawing.Size(101, 41);
+            this.btnPlugin.Size = new System.Drawing.Size(101, 30);
             this.btnPlugin.TabIndex = 1;
             this.btnPlugin.Text = "Load Plugin";
             this.btnPlugin.UseVisualStyleBackColor = true;
@@ -209,67 +236,67 @@
             // pnlShapes
             // 
             this.pnlShapes.Controls.Add(this.btnLine);
-            this.pnlShapes.Controls.Add(this.btnRectangle);
-            this.pnlShapes.Controls.Add(this.btnEllipse);
             this.pnlShapes.Controls.Add(this.btnTriangle);
+            this.pnlShapes.Controls.Add(this.btnRectangle);
             this.pnlShapes.Controls.Add(this.btnSquare);
+            this.pnlShapes.Controls.Add(this.btnEllipse);
             this.pnlShapes.Controls.Add(this.btnCircle);
             this.pnlShapes.Location = new System.Drawing.Point(0, 0);
             this.pnlShapes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlShapes.Name = "pnlShapes";
-            this.pnlShapes.Size = new System.Drawing.Size(101, 290);
+            this.pnlShapes.Size = new System.Drawing.Size(101, 235);
             this.pnlShapes.TabIndex = 1;
-            // 
-            // btnRectangle
-            // 
-            this.btnRectangle.Location = new System.Drawing.Point(0, 52);
-            this.btnRectangle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnRectangle.Name = "btnRectangle";
-            this.btnRectangle.Size = new System.Drawing.Size(101, 41);
-            this.btnRectangle.TabIndex = 1;
-            this.btnRectangle.Text = "Rectangle";
-            this.btnRectangle.UseVisualStyleBackColor = true;
-            this.btnRectangle.Click += new System.EventHandler(this.btnShape_Click);
-            // 
-            // btnEllipse
-            // 
-            this.btnEllipse.Location = new System.Drawing.Point(0, 100);
-            this.btnEllipse.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnEllipse.Name = "btnEllipse";
-            this.btnEllipse.Size = new System.Drawing.Size(101, 41);
-            this.btnEllipse.TabIndex = 2;
-            this.btnEllipse.Text = "Ellipse";
-            this.btnEllipse.UseVisualStyleBackColor = true;
-            this.btnEllipse.Click += new System.EventHandler(this.btnShape_Click);
             // 
             // btnTriangle
             // 
-            this.btnTriangle.Location = new System.Drawing.Point(0, 244);
+            this.btnTriangle.Location = new System.Drawing.Point(0, 42);
             this.btnTriangle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTriangle.Name = "btnTriangle";
-            this.btnTriangle.Size = new System.Drawing.Size(101, 41);
+            this.btnTriangle.Size = new System.Drawing.Size(101, 30);
             this.btnTriangle.TabIndex = 10;
             this.btnTriangle.Text = "Triangle";
             this.btnTriangle.UseVisualStyleBackColor = true;
             this.btnTriangle.Click += new System.EventHandler(this.btnShape_Click);
             // 
+            // btnRectangle
+            // 
+            this.btnRectangle.Location = new System.Drawing.Point(0, 80);
+            this.btnRectangle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRectangle.Name = "btnRectangle";
+            this.btnRectangle.Size = new System.Drawing.Size(101, 30);
+            this.btnRectangle.TabIndex = 1;
+            this.btnRectangle.Text = "Rectangle";
+            this.btnRectangle.UseVisualStyleBackColor = true;
+            this.btnRectangle.Click += new System.EventHandler(this.btnShape_Click);
+            // 
             // btnSquare
             // 
-            this.btnSquare.Location = new System.Drawing.Point(0, 148);
+            this.btnSquare.Location = new System.Drawing.Point(0, 118);
             this.btnSquare.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSquare.Name = "btnSquare";
-            this.btnSquare.Size = new System.Drawing.Size(101, 41);
+            this.btnSquare.Size = new System.Drawing.Size(101, 30);
             this.btnSquare.TabIndex = 3;
             this.btnSquare.Text = "Square";
             this.btnSquare.UseVisualStyleBackColor = true;
             this.btnSquare.Click += new System.EventHandler(this.btnShape_Click);
+            // 
+            // btnEllipse
+            // 
+            this.btnEllipse.Location = new System.Drawing.Point(0, 158);
+            this.btnEllipse.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnEllipse.Name = "btnEllipse";
+            this.btnEllipse.Size = new System.Drawing.Size(101, 30);
+            this.btnEllipse.TabIndex = 2;
+            this.btnEllipse.Text = "Ellipse";
+            this.btnEllipse.UseVisualStyleBackColor = true;
+            this.btnEllipse.Click += new System.EventHandler(this.btnShape_Click);
             // 
             // btnCircle
             // 
             this.btnCircle.Location = new System.Drawing.Point(0, 196);
             this.btnCircle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCircle.Name = "btnCircle";
-            this.btnCircle.Size = new System.Drawing.Size(101, 41);
+            this.btnCircle.Size = new System.Drawing.Size(101, 30);
             this.btnCircle.TabIndex = 4;
             this.btnCircle.Text = "Circle";
             this.btnCircle.UseVisualStyleBackColor = true;
@@ -277,10 +304,10 @@
             // 
             // btnDeserialize
             // 
-            this.btnDeserialize.Location = new System.Drawing.Point(0, 388);
+            this.btnDeserialize.Location = new System.Drawing.Point(0, 319);
             this.btnDeserialize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDeserialize.Name = "btnDeserialize";
-            this.btnDeserialize.Size = new System.Drawing.Size(101, 41);
+            this.btnDeserialize.Size = new System.Drawing.Size(101, 30);
             this.btnDeserialize.TabIndex = 12;
             this.btnDeserialize.Text = "Deserialize";
             this.btnDeserialize.UseVisualStyleBackColor = true;
@@ -288,10 +315,10 @@
             // 
             // btnSerialize
             // 
-            this.btnSerialize.Location = new System.Drawing.Point(0, 340);
+            this.btnSerialize.Location = new System.Drawing.Point(0, 281);
             this.btnSerialize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSerialize.Name = "btnSerialize";
-            this.btnSerialize.Size = new System.Drawing.Size(101, 41);
+            this.btnSerialize.Size = new System.Drawing.Size(101, 30);
             this.btnSerialize.TabIndex = 11;
             this.btnSerialize.Text = "Serialize";
             this.btnSerialize.UseVisualStyleBackColor = true;
@@ -299,10 +326,10 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(0, 292);
+            this.btnClear.Location = new System.Drawing.Point(0, 243);
             this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(101, 41);
+            this.btnClear.Size = new System.Drawing.Size(101, 30);
             this.btnClear.TabIndex = 9;
             this.btnClear.Text = "Clear ALL";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -337,6 +364,38 @@
             this.pnlCommon.Name = "pnlCommon";
             this.pnlCommon.Size = new System.Drawing.Size(1240, 864);
             this.pnlCommon.TabIndex = 0;
+            // 
+            // comboBoxCustomShape
+            // 
+            this.comboBoxCustomShape.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCustomShape.FormattingEnabled = true;
+            this.comboBoxCustomShape.Location = new System.Drawing.Point(0, 583);
+            this.comboBoxCustomShape.Name = "comboBoxCustomShape";
+            this.comboBoxCustomShape.Size = new System.Drawing.Size(101, 24);
+            this.comboBoxCustomShape.TabIndex = 1;
+            this.comboBoxCustomShape.SelectedIndexChanged += new System.EventHandler(this.btnCustomShape_Click);
+            // 
+            // btnDeleteShape
+            // 
+            this.btnDeleteShape.Location = new System.Drawing.Point(0, 614);
+            this.btnDeleteShape.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDeleteShape.Name = "btnDeleteShape";
+            this.btnDeleteShape.Size = new System.Drawing.Size(101, 26);
+            this.btnDeleteShape.TabIndex = 13;
+            this.btnDeleteShape.Text = "Delete";
+            this.btnDeleteShape.UseVisualStyleBackColor = true;
+            this.btnDeleteShape.Click += new System.EventHandler(this.btnDeleteShape_Click);
+            // 
+            // btnSaveShape
+            // 
+            this.btnSaveShape.Location = new System.Drawing.Point(0, 648);
+            this.btnSaveShape.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSaveShape.Name = "btnSaveShape";
+            this.btnSaveShape.Size = new System.Drawing.Size(101, 26);
+            this.btnSaveShape.TabIndex = 14;
+            this.btnSaveShape.Text = "Save";
+            this.btnSaveShape.UseVisualStyleBackColor = true;
+            this.btnSaveShape.Click += new System.EventHandler(this.btnSaveShape_Click);
             // 
             // MainForm
             // 
@@ -389,6 +448,11 @@
         private System.Windows.Forms.Button btnSaveSettings;
         private System.Windows.Forms.Button btnChangeBackgroundColor;
         private System.Windows.Forms.Button btnCreateShape;
+        private System.Windows.Forms.TextBox textBoxCustomShape;
+        private System.Windows.Forms.Label lblCustomShape;
+        private System.Windows.Forms.ComboBox comboBoxCustomShape;
+        private System.Windows.Forms.Button btnSaveShape;
+        private System.Windows.Forms.Button btnDeleteShape;
     }
 }
 

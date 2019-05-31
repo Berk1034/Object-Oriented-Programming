@@ -9,11 +9,11 @@ using MyShape;
 
 namespace MyPaint
 {
-    class CustomShape : Shape
+    public class CustomShape : Shape
     {
-        private List<Shape> components;
-        private int width;
-        private int height;
+        public List<Shape> components;
+        public int width;
+        public int height;
         public string name { get; set; }
         public int x1 { get; set; }
         public int x2 { get; set; }
@@ -27,17 +27,17 @@ namespace MyPaint
             this.width = width;
             this.height = height;
         }
+
         public CustomShape()
         {
             this.name = "Custom";
         }
-        /*
+        
         public CustomShape(Color clr, int pWidth)
         {
-            this.clr = clr;
-            this.pWidth = pWidth;
+            this.name = "Custom";
         }
-        */
+        
         public override Bitmap Draw(Bitmap bmp, Point first, Point second)
         {
             Pen pen = new Pen(Color.Black);

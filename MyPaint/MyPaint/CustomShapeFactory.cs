@@ -8,7 +8,7 @@ using MyShape;
 
 namespace MyPaint
 {
-    class CustomShapeFactory : ShapeFactory
+    public class CustomShapeFactory : ShapeFactory
     {
         public CustomShapeFactory()
         {
@@ -17,7 +17,12 @@ namespace MyPaint
 
         public override Shape Create(Color clr, int pWidth)
         {
-            return new CustomShape();
+            return new CustomShape(clr, pWidth);
+        }
+
+        public Shape Create(string name, List<Shape> components, int width, int height)
+        {
+            return new CustomShape(name, components, width, height);
         }
     }
 }

@@ -23,6 +23,8 @@ namespace MyPaint
 //        const String PluginFile = "MyDrawingPencil";
         const String PluginFile = "MyClosedCurve";
 
+        const String CustomShapesFile = "customshapes.json";
+
         public enum Shapes
         {
             Line,
@@ -44,10 +46,14 @@ namespace MyPaint
         private int penWidth = 1;
         private Shape figure;
         private int x, y, w, h;
-        private int location = 40;
+        private int location = 30;
         public List<Shape> ListOfShapes = new List<Shape>();
         public List<Shape> ListOfUserShapes = new List<Shape>();
+        public List<CustomShape> ListOfCustomShapes = new List<CustomShape>();
         private object ShapeSender = new Button();
+        private CustomShape customShape;
+        private int selected;
+
         private Dictionary<string, ShapeFactory> FactoriesList;
 
         public MainForm()
@@ -83,6 +89,33 @@ namespace MyPaint
             */
             MinP = new Point(0, 0);
             MaxP = new Point(ShapePictureBox.Width, ShapePictureBox.Height);
+
+            if (File.Exists(CustomShapesFile))
+            {
+                JsonSerializer jsonDeserializer = new JsonSerializer();
+                jsonDeserializer.TypeNameHandling = TypeNameHandling.Objects;
+
+                using (StreamReader reader = new StreamReader(CustomShapesFile))
+                {
+                    using (JsonReader jsonReader = new JsonTextReader(reader))
+                    {
+                        try
+                        {
+                            var DeserializedShapes = jsonDeserializer.Deserialize<List<CustomShape>>(jsonReader);
+                            ListOfCustomShapes.AddRange(DeserializedShapes);
+                            foreach(CustomShape cshape in ListOfCustomShapes)
+                            {
+                                comboBoxCustomShape.Items.Add(cshape.name);
+                            }
+                        }
+                        catch (Exception exception)
+                        {
+                            MessageBox.Show(exception.Message, "Deserialization Error");
+                        }
+                    }
+                }
+            }
+
         }
 
         private void ShapePictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -126,14 +159,15 @@ namespace MyPaint
                 ListOfShapes.Add(this.figure);
                 this.figure = FactoriesList[((Button)ShapeSender).Text].Create(Current, penWidth);
             }
-            if (user)
+            if (user && customShape != null)
             {
                 Cursor.Current = Cursors.Default;
-                user = false;
+//                user = false;
                 press = false;
                 two = e.Location;
-                CustomShape customShape = new CustomShape("CUSTOMSHAPE", ListOfUserShapes, ShapePictureBox.Width, ShapePictureBox.Height);
-                customShape.Draw(Bmp,one, two);
+                customShape.Draw(Bmp, one, two);
+
+
 /*
                 foreach (Shape figure in ListOfUserShapes)
                 {
@@ -151,6 +185,10 @@ namespace MyPaint
 //                    ShapePictureBox.Image = Bmp;
 //                }
                 ShapePictureBox.Image = Bmp;
+
+//                customShape = (CustomShape)ListOfCustomShapes.ElementAt<Shape>(comboBoxCustomShape.SelectedIndex);
+                CustomShapeFactory csf = new CustomShapeFactory();
+                customShape = (CustomShape)csf.Create(customShape.name,customShape.components,customShape.width,customShape.height);
             }
         }
 
@@ -161,9 +199,9 @@ namespace MyPaint
                 CountCanvasPoints();
                 figure.DrawE(one, two, e);
             }
-            if (user && press)
+            if (customShape != null && user && press)
             {
-                CustomShape customShape = new CustomShape("CUSTOMSHAPE",ListOfUserShapes,ShapePictureBox.Width,ShapePictureBox.Height);
+//                CustomShape customShape = new CustomShape("CUSTOMSHAPE",ListOfUserShapes,ShapePictureBox.Width,ShapePictureBox.Height);
                 customShape.DrawE(one, two, e);
 //                CountCanvasPoints();
 //                foreach (Shape figure in ListOfUserShapes)
@@ -202,11 +240,12 @@ namespace MyPaint
             var result = new List<ShapeFactory>();
 
             result.Add(new LineFactory());
-            result.Add(new RectangleFactory());
-            result.Add(new EllipseFactory());
             result.Add(new TriangleFactory());
+            result.Add(new RectangleFactory());
             result.Add(new SquareFactory());
+            result.Add(new EllipseFactory());
             result.Add(new CircleFactory());
+//            result.Add(new CustomShapeFactory());
 
             return result;
         }
@@ -325,11 +364,14 @@ namespace MyPaint
             button.Name = "btn" + factory.Name;
             button.Text = factory.Name;
             button.Width = 76;
-            button.Height = 34;
+            button.Height = 24;
+//            button.Width = 76;
+//            button.Height = 34;
             button.BackColor = SystemColors.ControlLight;
             button.ForeColor = SystemColors.ControlText;
             button.Click += btnShape_Click;
-            location += 40;
+            location += 30;
+//            location += 40;
         }
 
         private void btnPlugin_Click(object sender, EventArgs e)
@@ -427,8 +469,23 @@ namespace MyPaint
 
         private void btnShape_Click(object sender, EventArgs e)
         {
+            customShape = null;
+            comboBoxCustomShape.SelectedIndex = -1;
+            user = false;
             ((Button)ShapeSender).Text = ((Button)sender).Name;
             this.figure = FactoriesList[((Button)ShapeSender).Text].Create(Current, penWidth);
+        }
+
+        private void btnCustomShape_Click(object sender, EventArgs e)
+        {
+            if(comboBoxCustomShape.SelectedIndex != -1)
+            {
+                customShape = (CustomShape)ListOfCustomShapes.ElementAt<Shape>(comboBoxCustomShape.SelectedIndex);
+                //            string str = comboBoxCustomShape.SelectedItem.ToString();
+                //            ((Button)ShapeSender).Text = ((Button)sender).Name;
+                user = true;
+            }
+
         }
 
         private void btnSaveSettings_Click(object sender, EventArgs e)
@@ -478,14 +535,41 @@ namespace MyPaint
 
         private void btnCreateShape_Click(object sender, EventArgs e)
         {
-            try
+            this.figure = null;
+            if(ListOfShapes.Count != 0)
             {
-//                press = false;
-                this.figure = null;
-                foreach (Shape shp in ListOfShapes)
+                if (textBoxCustomShape.Text.Trim(' ') != "")
                 {
-                    ListOfUserShapes.Add(shp);
+                    try
+                    {                        
+                        foreach (Shape shp in ListOfShapes)
+                        {
+                            ListOfUserShapes.Add(shp);
+                        }                        
+                        this.customShape = new CustomShape(textBoxCustomShape.Text.Trim(' '), new List<Shape>(ListOfUserShapes), ShapePictureBox.Width, ShapePictureBox.Height);
+                        ListOfCustomShapes.Add(this.customShape);
+                        textBoxCustomShape.Text = "";
+                        comboBoxCustomShape.Items.Add(customShape.name);
+                        ListOfUserShapes.Clear();
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message, "Creating Shape Error");
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("Enter any character!", "Creating Shape Error");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Draw any shape first!", "Creating Shape Error");
+            }
+            
+
+//                press = false;
+
 
 //                FindMinAndMaxPoints();
 /*
@@ -499,15 +583,70 @@ namespace MyPaint
                     usershape.h = usershape.h - MaxP.Y;
                 }
 */
-                user = true;
-            }
-            catch(Exception exception)
-            {
-                MessageBox.Show(exception.Message, "Creating Shape Error");
-            }
-
         }
 
+        private void btnSaveShape_Click(object sender, EventArgs e)
+        {
+            JsonSerializer jsonSerializer = new JsonSerializer();
+            jsonSerializer.TypeNameHandling = TypeNameHandling.Objects;
+
+            using (StreamWriter writer = new StreamWriter(CustomShapesFile))
+            {
+                using (JsonWriter jsonWriter = new JsonTextWriter(writer))
+                {
+                    try
+                    {
+                        jsonSerializer.Serialize(jsonWriter, ListOfCustomShapes);
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message, "Serialization Error");
+                    }
+                }
+            }
+        }
+
+        private void btnDeleteShape_Click(object sender, EventArgs e)
+        {
+            if(comboBoxCustomShape.SelectedIndex != -1)
+            {
+                ListOfCustomShapes.RemoveAt(comboBoxCustomShape.SelectedIndex);
+                comboBoxCustomShape.Items.RemoveAt(comboBoxCustomShape.SelectedIndex);
+                JsonSerializer jsonSerializer = new JsonSerializer();
+                jsonSerializer.TypeNameHandling = TypeNameHandling.Objects;
+
+                using (StreamWriter writer = new StreamWriter(CustomShapesFile))
+                {
+                    using (JsonWriter jsonWriter = new JsonTextWriter(writer))
+                    {
+                        try
+                        {
+                            jsonSerializer.Serialize(jsonWriter, ListOfCustomShapes);
+                        }
+                        catch (Exception exception)
+                        {
+                            MessageBox.Show(exception.Message, "Serialization Error");
+                        }
+                    }
+                }
+                user = false;
+                customShape = null;
+            }
+//            ListOfCustomShapes.Remove(comboBoxCustomShape.SelectedIndex)
+        }
+
+        /*
+        private void btnChooseShape_Click(object sender, EventArgs e)
+        {
+            user = true;
+        }
+        */
+        /*
+        private void btnCustomShape_Click(object sender, EventArgs e)
+        {
+            user = true;
+        }
+        */
         private void btnClear_Click(object sender, EventArgs e)
         {
             ShapePictureBox.Image = null;
@@ -537,8 +676,8 @@ namespace MyPaint
 
                 x = Math.Min(one.X, two.X);
                 y = Math.Min(one.Y, two.Y);
-                h = Math.Abs(one.X - two.X);
-                w = Math.Abs(one.Y - two.Y);
+                w = Math.Abs(one.X - two.X);
+                h = Math.Abs(one.Y - two.Y);
             //            }
             //            else
             /*
