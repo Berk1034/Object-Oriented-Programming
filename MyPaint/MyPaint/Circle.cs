@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 using MyShape;
+using Newtonsoft.Json;
 
 namespace MyPaint
 {
@@ -15,10 +16,22 @@ namespace MyPaint
 //        public int x, y, h, w;
 //        private Color clr;
 //        private int pWidth;
+        [JsonConstructor]
         public Circle(Color clr, int pWidth)
         {
             this.clr = clr;
             this.pWidth = pWidth;
+        }
+        public Circle(Point p1,Point p2,Color clr, int pWidth)
+        {
+            this.pos1 = p1;
+            this.pos2 = p2;
+            this.clr = clr;
+            this.pWidth = pWidth;
+        }
+        public override Shape Clone(Point pos1, Point pos2, Color clr, int pWidth)
+        {
+            return new Circle(pos1, pos2, clr, pWidth);
         }
         public override Bitmap Draw(Bitmap bmp, Point first, Point second)
         {

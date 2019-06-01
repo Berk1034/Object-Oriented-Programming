@@ -52,7 +52,7 @@ namespace MyPaint
         public List<CustomShape> ListOfCustomShapes = new List<CustomShape>();
         private object ShapeSender = new Button();
         private CustomShape customShape;
-        private int selected;
+//        private int selected;
 
         private Dictionary<string, ShapeFactory> FactoriesList;
 
@@ -115,7 +115,6 @@ namespace MyPaint
                     }
                 }
             }
-
         }
 
         private void ShapePictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -185,10 +184,51 @@ namespace MyPaint
 //                    ShapePictureBox.Image = Bmp;
 //                }
                 ShapePictureBox.Image = Bmp;
+                int i = 0;
+                List<Shape> tmp = new List<Shape>();
+                foreach(Shape shp in customShape.components)
+                {
+                    tmp.Add(shp.Clone(customShape.newpoints[i][0],customShape.newpoints[i][1],shp.clr,shp.pWidth));
+                    i++;
+                }
+                ListOfShapes.AddRange(tmp);
+                /*
+                List<Shape> tmp = new List<Shape>(customShape.components);
+                foreach (Shape shp in tmp)
+                {                  
+                    shp.pos1 = customShape.newpoints[i][0];
+                    shp.pos2 = customShape.newpoints[i][1];
+ 
+                    ListOfShapes.Add(tmp);
+                    i++;
+                }
+                */
+                /*
+                foreach(Shape shp in customShape.components)
+                {
+                    shp.pos1 = customShape.newpoints[i][0];
+                    shp.pos2 = customShape.newpoints[i][1];
+                    i++;
+                    ListOfShapes.Add(shp);
+                }
+                */
+                /*
+                foreach(Shape shp in customShape.SerializeList)
+                {
+                    ListOfShapes.Add(shp);
+                }
+                */
+                /*
+                foreach (Shape shp in customShape.SerializeList)
+                {
+                    ListOfShapes.Add(shp);
+                }
+                */
+                //                customShape = (CustomShape)ListOfCustomShapes.ElementAt<Shape>(comboBoxCustomShape.SelectedIndex);
 
-//                customShape = (CustomShape)ListOfCustomShapes.ElementAt<Shape>(comboBoxCustomShape.SelectedIndex);
                 CustomShapeFactory csf = new CustomShapeFactory();
                 customShape = (CustomShape)csf.Create(customShape.name,customShape.components,customShape.width,customShape.height);
+
             }
         }
 
@@ -541,11 +581,12 @@ namespace MyPaint
                 if (textBoxCustomShape.Text.Trim(' ') != "")
                 {
                     try
-                    {                        
+                    {                  
                         foreach (Shape shp in ListOfShapes)
                         {
                             ListOfUserShapes.Add(shp);
-                        }                        
+                        }       
+                        
                         this.customShape = new CustomShape(textBoxCustomShape.Text.Trim(' '), new List<Shape>(ListOfUserShapes), ShapePictureBox.Width, ShapePictureBox.Height);
                         ListOfCustomShapes.Add(this.customShape);
                         textBoxCustomShape.Text = "";

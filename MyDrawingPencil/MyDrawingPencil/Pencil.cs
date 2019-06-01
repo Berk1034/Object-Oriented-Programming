@@ -6,17 +6,29 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 using MyShape;
+using Newtonsoft.Json;
 
 namespace MyDrawingPencil
 {
     public class Pencil : Shape
     {
+        [JsonConstructor]
         public Pencil(Color clr, int pWidth)
         {
             this.clr = clr;
             this.pWidth = pWidth;
         }
-
+        public Pencil(Point p1, Point p2, Color clr, int pWidth)
+        {
+            this.pos1 = p1;
+            this.pos2 = p2;
+            this.clr = clr;
+            this.pWidth = pWidth;
+        }
+        public override Shape Clone(Point pos1, Point pos2, Color clr, int pWidth)
+        {
+            return new Pencil(pos1, pos2, clr, pWidth);
+        }
         public override Bitmap Draw(Bitmap bmp,Point first, Point second)
         {
             Graphics graph = Graphics.FromImage(bmp);

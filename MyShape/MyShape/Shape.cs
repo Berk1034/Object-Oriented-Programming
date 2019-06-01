@@ -14,6 +14,7 @@ namespace MyShape
         public Color clr;
         public int pWidth;
 
+        public abstract Shape Clone(Point p1,Point p2,Color color,int widthofpen);
         public abstract Bitmap Draw(Bitmap bmp, Point first, Point second);
         public abstract void DrawE(Point first, Point second, PaintEventArgs e);
     }
